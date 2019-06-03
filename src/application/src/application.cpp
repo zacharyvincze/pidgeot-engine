@@ -1,13 +1,14 @@
 #include "application.h"
 
 #include "tasks/tasks.h"
+#include "modules/gamestate.h"
 
 Application::Application() {
-    // Quickly load resources and things like that I suppose
-
-    pushTask(new TaskStart);
-    pushTask(new TaskDraw);
-    pushTask(new TaskEnd);
+    std::shared_ptr<GameState> main_state = std::shared_ptr<GameState>(new GameState("main"));
+    main_state->pushTask(new TaskStart);
+    main_state->pushTask(new TaskDraw);
+    main_state->pushTask(new TaskEnd);
+    setGameState(main_state);
 }
 
 Application::~Application() {

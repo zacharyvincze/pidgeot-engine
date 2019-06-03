@@ -49,9 +49,7 @@ namespace Pidgeot {
 
     void Engine::run() {
         while (mRunning) {
-            for (Task* task : m_task_manager) {
-                task->update();
-            }
+            m_gamestate->update();
         }
     }
     
