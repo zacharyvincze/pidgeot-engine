@@ -15,7 +15,7 @@ SDL_Texture* ResourceManager::loadTexture(const std::string filepath) {
             exit(-1);
         }
         s_textures.insert(std::pair<std::string, SDL_Texture*>(filepath, image_texture));
-        spdlog::debug("Created texture %s");
+        spdlog::debug("Created texture {} at {:p}", filepath.c_str(), (void*)image_texture);
     }
     return s_textures.at(filepath);
 }

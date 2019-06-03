@@ -4,6 +4,8 @@
 #include <memory>
 #include "task.h"
 
+#include "spdlog/spdlog.h"
+
 class TaskManager {
     public:
         void test();

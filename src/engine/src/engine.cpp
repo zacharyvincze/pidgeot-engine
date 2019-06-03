@@ -13,6 +13,8 @@ namespace Pidgeot {
     }
 
     Engine::Engine() {
+        spdlog::set_level(spdlog::level::debug);
+        spdlog::info("Initializing PidgeotEngine");
 
         // Init SDL subsystems
         SDL_Init(SDL_INIT_EVERYTHING);
@@ -25,9 +27,10 @@ namespace Pidgeot {
         uint32_t window_mode;
         if (m_config->getBoolOption("fullscreen")) window_mode = SDL_WINDOW_FULLSCREEN_DESKTOP;
         else window_mode = SDL_WINDOW_SHOWN;
+        std::string window_title = m_config->getOption("title");
 
         // Create required objects
-        m_window = std::shared_ptr<Window>(new Window("SDL Testing some things", window_width, window_height, window_mode));
+        m_window = std::shared_ptr<Window>(new Window(window_title.c_str(), window_width, window_height, window_mode));
         m_renderer = std::shared_ptr<Renderer>(new Renderer(m_window, SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_ACCELERATED));
         m_resource_manager = std::shared_ptr<ResourceManager>(new ResourceManager(m_renderer));
         m_input = std::shared_ptr<Input>(new Input);
@@ -40,6 +43,8 @@ namespace Pidgeot {
 
         // Start engine clock
         m_timer.reset();
+
+        spdlog::info("Successfully initialized PidgeotEngine");
     }
 
     void Engine::run() {

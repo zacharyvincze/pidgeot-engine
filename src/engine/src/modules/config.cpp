@@ -5,11 +5,15 @@
 #include <algorithm>
 #include <stdexcept>
 
+#include "spdlog/spdlog.h"
+#include "utils/string-utils.h"
+
 Config::Config(const std::string filepath) {
+    spdlog::debug("Initializing configuration module");
     std::ifstream configuration_file;
     configuration_file.open(filepath.c_str());
     if (!configuration_file.is_open()) {
-        printf("Could not read configuration file: %s\n", filepath.c_str());
+        spdlog::error("Unable to read configuration file: {}", filepath.c_str());
         exit(-1);
     }
 
@@ -21,11 +25,13 @@ Config::Config(const std::string filepath) {
 
         std::string token = input.substr(0, input.find(delimeter));
         std::transform(token.begin(), token.end(), token.begin(), ::tolower);
+        token = stringutils::trim(token);
         std::string option = input.erase(0, input.find(delimeter)+1);
         std::transform(option.begin(), option.end(), option.begin(), ::tolower);
+        option = stringutils::trim(option);
 
         m_options.insert(std::pair<std::string, std::string>(token, option));
-        printf("CONFIG: %s: %s\n", token.c_str(), option.c_str());
+        spdlog::debug("{}: {}", token.c_str(), option.c_str());
     }
 }
 
@@ -33,7 +39,7 @@ std::string Config::getOption(const std::string option) {
     try {
         return m_options.at(option);
     } catch (std::out_of_range& e) {
-        printf("Error when processing option %s: %s\n", option.c_str(), e.what());
+        spdlog::error("Error when processing option {}: {}\n", option.c_str(), e.what());
     }
 }
 
@@ -41,7 +47,7 @@ int Config::getNumOption(const std::string option) {
     try {
         return stoi(getOption(option));
     } catch (std::exception &e) {
-        printf("Error when converting option %s to numerical value: %s", option.c_str(), e.what());
+        spdlog::error("Error when converting option {} to numerical value: {}", option.c_str(), e.what());
     }
 }
 
