@@ -6,12 +6,13 @@ set_property(GLOBAL PROPERTY ENGINE_INCLUDES "")
 
 aux_source_directory(src/application/src SRC_APPLICATION)
 aux_source_directory(src/application/src/tasks SRC_APPLICATION_TASKS)
+aux_source_directory(src/application/src/states SRC_APPLICATION_STATES)
 aux_source_directory(src/engine/src SRC_ENGINE)
 aux_source_directory(src/engine/src/modules SRC_ENGINE_MODULES)
 aux_source_directory(src/engine/src/modules/map SRC_ENGINE_MODULES_MAP)
 aux_source_directory(src/engine/src/utils SRC_ENGINE_UTILS)
 
-set(SOURCES ${SRC_APPLICATION} ${SRC_APPLICATION_TASKS} ${SRC_ENGINE} ${SRC_ENGINE_MODULES} ${SRC_ENGINE_MODULES_MAP} ${SRC_ENGINE_UTILS})
+set(SOURCES ${SRC_APPLICATION} ${SRC_APPLICATION_TASKS} ${SRC_APPLICATION_STATES} ${SRC_ENGINE} ${SRC_ENGINE_MODULES} ${SRC_ENGINE_MODULES_MAP} ${SRC_ENGINE_UTILS})
 
 include(FindPkgConfig)
 

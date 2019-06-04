@@ -2,8 +2,8 @@
 
 #include "spdlog/spdlog.h"
 
-GameState::GameState(const std::string name) : name(name) {
-    spdlog::info("Created GameState {}", name.c_str());
+GameState::GameState(const std::string name) : m_name(name) {
+    spdlog::info("Created GameState {}", m_name.c_str());
 }
 
 void GameState::update() {

@@ -34,6 +34,7 @@ namespace Pidgeot {
         m_renderer = std::shared_ptr<Renderer>(new Renderer(m_window, SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_ACCELERATED));
         m_resource_manager = std::shared_ptr<ResourceManager>(new ResourceManager(m_renderer));
         m_input = std::shared_ptr<Input>(new Input);
+        m_state_manager = std::shared_ptr<StateManager>(new StateManager());
 
         // Allocate memory for singleton pointer
         mInstance = this;
@@ -49,7 +50,7 @@ namespace Pidgeot {
 
     void Engine::run() {
         while (mRunning) {
-            m_gamestate->update();
+            m_state_manager->update();
         }
     }
     

@@ -1,14 +1,10 @@
 #include "application.h"
 
-#include "tasks/tasks.h"
-#include "modules/gamestate.h"
+#include "states/test.h"
 
 Application::Application() {
-    std::shared_ptr<GameState> main_state = std::shared_ptr<GameState>(new GameState("main"));
-    main_state->pushTask(new TaskStart);
-    main_state->pushTask(new TaskDraw);
-    main_state->pushTask(new TaskEnd);
-    setGameState(main_state);
+    pushState(new TestState("main_test"));
+    setActiveState("main_test");
 }
 
 Application::~Application() {

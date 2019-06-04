@@ -8,7 +8,7 @@
 #include "modules/resourcemanager.h"
 #include "modules/timer.h"
 #include "modules/config.h"
-#include "modules/gamestate.h"
+#include "modules/statemanager.h"
 
 namespace Pidgeot {
     class Engine {
@@ -19,7 +19,8 @@ namespace Pidgeot {
 
             void run();
 
-            inline void setGameState(std::shared_ptr<GameState> gamestate) { m_gamestate = gamestate; }
+            inline void setActiveState(const std::string name) { m_state_manager->setActiveState(name); }
+            inline void pushState(GameState* state) { m_state_manager->pushState(state); }
 
             inline Renderer& renderer() { return *m_renderer; }
             inline Window& window() { return *m_window; }
@@ -38,7 +39,7 @@ namespace Pidgeot {
             std::shared_ptr<Window> m_window;
             std::shared_ptr<ResourceManager> m_resource_manager;
             std::shared_ptr<Input> m_input;
-            std::shared_ptr<GameState> m_gamestate;
+            std::shared_ptr<StateManager> m_state_manager;
             
             std::unique_ptr<Config> m_config;
 
