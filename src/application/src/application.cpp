@@ -1,10 +1,10 @@
 #include "application.h"
 
-#include "states/test.h"
+#include "states/states.h"
 
 Application::Application() {
-    pushState(new TestState("main_test"));
-    setActiveState("main_test");
+    stateManager().pushState(new TestState("main_test"));
+    stateManager().setActiveState("main_test");
 }
 
 Application::~Application() {

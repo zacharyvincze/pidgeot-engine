@@ -3,12 +3,15 @@
 #include <memory>
 #include <SDL2/SDL.h>
 
+#include "spdlog/spdlog.h"
+
 #include "modules/renderer.h"
 #include "modules/input.h"
-#include "modules/resourcemanager.h"
 #include "modules/timer.h"
 #include "modules/config.h"
 #include "modules/statemanager.h"
+
+#include "modules/resources/resourcemanager.h"
 
 namespace Pidgeot {
     class Engine {
@@ -19,13 +22,11 @@ namespace Pidgeot {
 
             void run();
 
-            inline void setActiveState(const std::string name) { m_state_manager->setActiveState(name); }
-            inline void pushState(GameState* state) { m_state_manager->pushState(state); }
-
             inline Renderer& renderer() { return *m_renderer; }
             inline Window& window() { return *m_window; }
             inline ResourceManager& resources() { return *m_resource_manager; }
             inline Input& input() { return *m_input; }
+            inline StateManager& stateManager() { return *m_state_manager; }
 
             inline long getTicks() { return m_timer.ticks(); }
 

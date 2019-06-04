@@ -1,7 +1,9 @@
 #include "tasks/draw.h"
 
+TaskDraw::TaskDraw() {
+    m_ness = std::unique_ptr<Pidgeot::Sprite>(new Pidgeot::Sprite("resources/sprites/ness-front.png", 0, 0, 32, 48, 0, 0));
+}
+
 void TaskDraw::update() {
-    Pidgeot::Engine::get().resources().loadTexture("resources/sprites/ness-front.png");
-    Pidgeot::Engine::get().renderer().setDrawColor(0xFF,0xFF,0xFF,0xFF);
-    Pidgeot::Engine::get().renderer().drawPoint(0,0);
+    m_ness->draw();
 }
