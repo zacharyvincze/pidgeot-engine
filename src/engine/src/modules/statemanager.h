@@ -6,8 +6,8 @@
 
 class StateManager {
     public:
-        inline void pushState(GameState* state) { m_gamestates.insert(std::pair<std::string, GameState*>(state->getName(), state)); }
-        inline void setActiveState(const std::string name) { m_active_state = m_gamestates.at(name); }
+        void pushState(GameState* state);
+        void setActiveState(const std::string name);
 
         void update();
     private:
