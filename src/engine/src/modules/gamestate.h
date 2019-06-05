@@ -4,6 +4,8 @@
 #include <vector>
 #include <string>
 
+#include "log.h"
+
 class GameState {
     public:
         GameState(const std::string name);
@@ -13,7 +15,7 @@ class GameState {
 
         inline std::string getName() { return m_name; }
 
-        inline void pushTask(Pidgeot::Task* task) { m_tasks.push_back(task); }
+        inline void pushTask(Pidgeot::Task* task) { m_tasks.push_back(task); ENGINE_DEBUG("Pushed task to state {}", m_name); }
         inline void pullTask() { m_tasks.pop_back(); }
     private:
         std::vector<Pidgeot::Task*> m_tasks;

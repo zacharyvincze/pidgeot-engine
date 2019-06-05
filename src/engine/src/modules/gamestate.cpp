@@ -1,9 +1,9 @@
 #include "modules/gamestate.h"
 
-#include "spdlog/spdlog.h"
+#include "log.h"
 
 GameState::GameState(const std::string name) : m_name(name) {
-    spdlog::debug("Created GameState {}", m_name.c_str());
+    ENGINE_DEBUG("Created GameState {}", m_name.c_str());
 }
 
 void GameState::update() {

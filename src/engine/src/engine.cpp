@@ -1,7 +1,7 @@
 #include "engine.h"
 
 #include <SDL2/SDL_image.h>
-#include "spdlog/spdlog.h"
+#include "log.h"
 
 namespace Pidgeot {
     Engine* Engine::mInstance = nullptr;
@@ -13,8 +13,8 @@ namespace Pidgeot {
     }
 
     Engine::Engine() {
-        spdlog::set_level(spdlog::level::debug);
-        spdlog::info("Initializing PidgeotEngine");
+        Pidgeot::Log::init();
+        ENGINE_INFO("Initializing PidgeotEngine");
 
         // Init SDL subsystems
         SDL_Init(SDL_INIT_EVERYTHING);
@@ -45,7 +45,7 @@ namespace Pidgeot {
         // Start engine clock
         m_timer.reset();
 
-        spdlog::info("Successfully initialized PidgeotEngine");
+        ENGINE_INFO("Successfully initialized PidgeotEngine");
     }
 
     void Engine::run() {

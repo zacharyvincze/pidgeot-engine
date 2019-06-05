@@ -5,15 +5,15 @@
 #include <algorithm>
 #include <stdexcept>
 
-#include "spdlog/spdlog.h"
+#include "log.h"
 #include "utils/string-utils.h"
 
 Config::Config(const std::string filepath) {
-    spdlog::debug("Initializing configuration module");
+    ENGINE_DEBUG("Initializing configuration module");
     std::ifstream configuration_file;
     configuration_file.open(filepath.c_str());
     if (!configuration_file.is_open()) {
-        spdlog::error("Unable to read configuration file: {}", filepath.c_str());
+        ENGINE_ERROR("Unable to read configuration file: {}", filepath.c_str());
         exit(-1);
     }
 
@@ -39,7 +39,7 @@ std::string Config::getOption(const std::string option) {
     try {
         return m_options.at(option);
     } catch (std::out_of_range& e) {
-        spdlog::error("Error when processing option {}: {}\n", option.c_str(), e.what());
+        ENGINE_ERROR("Error when processing option {}: {}\n", option.c_str(), e.what());
     }
 }
 
@@ -47,7 +47,7 @@ int Config::getNumOption(const std::string option) {
     try {
         return stoi(getOption(option));
     } catch (std::exception &e) {
-        spdlog::error("Error when converting option {} to numerical value: {}", option.c_str(), e.what());
+        ENGINE_ERROR("Error when converting option {} to numerical value: {}", option.c_str(), e.what());
     }
 }
 
