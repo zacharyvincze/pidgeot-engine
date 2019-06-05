@@ -20,7 +20,12 @@ namespace Pidgeot {
     }
 
     void AnimatedSprite::update() {
-        // TODO: Change current sprite index based on information given
+        m_elapsed_time = Engine::get().getTicks() - m_timer_start;
+        if (m_elapsed_time >= m_frame_millis) {
+            m_current_frame++;
+            if (m_current_frame > m_frame_count-1) m_current_frame = 0;
+            m_timer_start = Engine::get().getTicks();
+        }
     }
 
     void AnimatedSprite::draw(int x, int y) {
