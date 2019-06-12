@@ -2,6 +2,7 @@
 
 #include "task.h"
 #include "engine.h"
+#include "player.h"
 
 #include "modules/resources/animated_sprite.h"
 
@@ -10,5 +11,5 @@ class TaskDraw : public Pidgeot::Task {
         TaskDraw();
         void update();
     private:
-        std::unique_ptr<Pidgeot::AnimatedSprite> m_ness;
+        std::unique_ptr<Player> m_player;
 };

@@ -46,6 +46,8 @@ namespace Pidgeot {
 
             // Main flag for running engine loop
             bool mRunning;
+
+            uint m_frames_per_second;
     };
 
     Engine* createApplication();

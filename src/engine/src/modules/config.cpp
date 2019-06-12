@@ -37,6 +37,7 @@ Config::Config(const std::string filepath) {
 
 std::string Config::getOption(const std::string option) {
     try {
+        ENGINE_DEBUG("{}: {}", option, m_options.at(option));
         return m_options.at(option);
     } catch (std::out_of_range& e) {
         ENGINE_ERROR("Error when processing option {}: {}\n", option.c_str(), e.what());

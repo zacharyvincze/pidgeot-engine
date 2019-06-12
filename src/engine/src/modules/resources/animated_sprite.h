@@ -4,7 +4,7 @@
 #include <vector>
 
 namespace Pidgeot {
-    class AnimatedSprite {
+    class AnimatedSprite : public Sprite {
         public:
             AnimatedSprite(const std::string filepath, int source_x, int source_y, int width, int height, int frames, int frame_millis);
             ~AnimatedSprite();

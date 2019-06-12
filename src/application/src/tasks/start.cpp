@@ -5,6 +5,7 @@
 # define M_PI 3.14159265358979323846
 
 void TaskStart::update() {
+    Pidgeot::Engine::get().input().reset();
     Pidgeot::Engine::get().input().pollEvents();
 
     if (Pidgeot::Engine::get().input().wasKeyPressed(SDL_SCANCODE_ESCAPE)) Pidgeot::Engine::get().quit();

@@ -7,7 +7,7 @@ ResourceManager::ResourceManager(std::shared_ptr<Renderer> renderer) :
     m_renderer(renderer) {
 }
 
-Pidgeot::Texture* ResourceManager::loadTexture(const std::string filepath) {
+template<class T> Pidgeot::Texture* ResourceManager::get(const std::string filepath) {
     if (m_textures.count(filepath) <= 0) {
         SDL_Texture* image_texture = IMG_LoadTexture(m_renderer->getRenderer(), filepath.c_str());
         if (!image_texture) {
@@ -19,3 +19,5 @@ Pidgeot::Texture* ResourceManager::loadTexture(const std::string filepath) {
     }
     return m_textures.at(filepath);
 }
+
+template Pidgeot::Texture* ResourceManager::get<Pidgeot::Texture>(const std::string);

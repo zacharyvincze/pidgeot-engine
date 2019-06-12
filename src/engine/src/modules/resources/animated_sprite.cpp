@@ -4,7 +4,7 @@
 
 namespace Pidgeot {
     AnimatedSprite::AnimatedSprite(const std::string filepath, int source_x, int source_y, int width, int height, int frames, int frame_millis) :
-        m_frame_count(frames), m_frame_millis(frame_millis), m_current_frame(0) {
+        m_frame_count(frames), m_frame_millis(frame_millis), m_current_frame(0), Sprite(filepath, source_x, source_y, width, height) {
         
         for (int frame = 0; frame < m_frame_count; frame++) {
             m_sprites.push_back(new Sprite(filepath, source_x+(frame*width), source_y, width, height));

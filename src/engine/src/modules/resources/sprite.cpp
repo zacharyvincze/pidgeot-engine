@@ -5,7 +5,7 @@ namespace Pidgeot {
         m_source_rect({source_x, source_y, width, height}),
         m_destination_rect({0, 0, width, height}) {
 
-        m_texture = Engine::get().resources().loadTexture(texture);
+        m_texture = Engine::get().resources().get<Pidgeot::Texture>(texture);
     }
 
     Sprite::~Sprite() {}

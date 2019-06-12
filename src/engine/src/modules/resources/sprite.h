@@ -11,6 +11,7 @@ namespace Pidgeot {
             ~Sprite();
 
             void draw(int x, int y);
+            virtual void update() {}
         private:
             SDL_Rect m_destination_rect;
             SDL_Rect m_source_rect;

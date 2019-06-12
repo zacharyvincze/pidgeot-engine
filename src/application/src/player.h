@@ -10,17 +10,17 @@ class Player {
         ~Player();
 
         void update();
-        void draw();
+        inline void draw() { m_sprites[m_current_sprite]->draw(m_position.x, m_position.y); }
 
-        void moveUp();
-        void moveDown();
-        void moveLeft();
-        void moveRight();
+        inline void moveUp() { m_vertical_velocity = -PLAYER_SPEED; }
+        inline void moveDown() { m_vertical_velocity = PLAYER_SPEED; }
+        inline void moveLeft() { m_horizontal_velocity = -PLAYER_SPEED; }
+        inline void moveRight() { m_horizontal_velocity = PLAYER_SPEED; }
     private:
-        std::vector<Pidgeot::AnimatedSprite*> m_sprites;
+        std::vector<Pidgeot::Sprite*> m_sprites;
         SDL_Rect m_position, m_bounding_box;    // Bounding box will eventually be converted into a rigid 2d body sometime during development
 
-        const enum SpriteIndex {IDLE_UP, IDLE_DOWN, IDLE_LEFT, IDLE_RIGHT, WALKING_UP, WALKING_DOWN, WALKING_LEFT, WALKING_RIGHT};
+        enum SpriteIndex {IDLE_UP, IDLE_DOWN, IDLE_LEFT, IDLE_RIGHT, WALKING_UP, WALKING_DOWN, WALKING_LEFT, WALKING_RIGHT};
         SpriteIndex m_current_sprite;
 
         const int PLAYER_SPEED = 1;

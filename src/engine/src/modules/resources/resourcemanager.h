@@ -1,6 +1,6 @@
 #pragma once
 
-#include <map>
+#include <unordered_map>
 #include <string>
 #include <memory>
 #include <SDL2/SDL.h>
@@ -11,8 +11,9 @@
 class ResourceManager {
     public:
         ResourceManager(std::shared_ptr<Renderer> renderer);
-        Pidgeot::Texture* loadTexture(const std::string filepath);
+
+        template <class T> Pidgeot::Texture* get(const std::string filepath);
     private:
-        std::map<std::string, Pidgeot::Texture*> m_textures;
+        std::unordered_map<std::string, Pidgeot::Texture*> m_textures;
         std::shared_ptr<Renderer> m_renderer;
 };
