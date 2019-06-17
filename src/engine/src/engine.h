@@ -12,6 +12,7 @@
 #include "modules/statemanager.h"
 
 #include "modules/resources/resourcemanager.h"
+#include "modules/resources/text.h"
 
 namespace Pidgeot {
     class Engine {

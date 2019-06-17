@@ -2,7 +2,7 @@
 
 #include "log.h"
 
-Player::Player(int x, int y) : m_position({x,y,0,0}) {
+Player::Player(int x, int y) : m_position({x,y,0,0}), m_horizontal_velocity(0), m_vertical_velocity(0) {
     // Cannot do anything with this until I get some resources to use I suppose
     APP_DEBUG("Created player at {:p}", (void*)this);
 

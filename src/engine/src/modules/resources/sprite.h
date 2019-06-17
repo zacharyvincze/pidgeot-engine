@@ -16,6 +16,6 @@ namespace Pidgeot {
             SDL_Rect m_destination_rect;
             SDL_Rect m_source_rect;
 
-            Pidgeot::Texture* m_texture;
+            Pidgeot::Texture *m_texture;
     };
 }

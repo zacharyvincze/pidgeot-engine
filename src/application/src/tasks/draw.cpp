@@ -2,6 +2,7 @@
 
 TaskDraw::TaskDraw() {
     m_player = std::unique_ptr<Player>(new Player(0,0));
+    m_text = std::unique_ptr<Pidgeot::Text>(new Pidgeot::Text("resources/fonts/apple-kid.PNG", 8, 16));
 }
 
 void TaskDraw::update() {
@@ -12,4 +13,6 @@ void TaskDraw::update() {
 
     m_player->update();
     m_player->draw();
+
+    m_text->print("Yeah, looks like this is all in order!", 0, 0);
 }
