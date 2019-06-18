@@ -9,8 +9,8 @@ namespace Pidgeot {
             AnimatedSprite(const std::string filepath, int source_x, int source_y, int width, int height, int frames, int frame_millis);
             ~AnimatedSprite();
 
-            void draw(int x, int y);
-            void update();
+            void draw(int x, int y) override;
+            void update() override;
             inline void reset();
         private:
             long m_timer_start, m_elapsed_time;

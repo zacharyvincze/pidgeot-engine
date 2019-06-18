@@ -10,7 +10,7 @@ class Player {
         ~Player();
 
         void update();
-        inline void draw() { m_sprites[m_current_sprite]->draw(m_position.x, m_position.y); }
+        inline void draw() { m_sprites[IDLE_UP]->draw(m_position.x, m_position.y); }
 
         inline void moveUp() { m_vertical_velocity = -PLAYER_SPEED; }
         inline void moveDown() { m_vertical_velocity = PLAYER_SPEED; }

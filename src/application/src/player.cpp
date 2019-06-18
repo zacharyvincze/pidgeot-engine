@@ -25,5 +25,5 @@ void Player::update() {
     m_horizontal_velocity = 0;
     m_vertical_velocity = 0;
 
-    m_sprites[m_current_sprite]->update();
+    m_sprites[IDLE_UP]->update();
 }

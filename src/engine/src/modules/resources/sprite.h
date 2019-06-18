@@ -10,7 +10,7 @@ namespace Pidgeot {
             Sprite(const std::string texture, int source_x, int source_y, int width, int height);
             ~Sprite();
 
-            void draw(int x, int y);
+            virtual void draw(int x, int y);
             virtual void update() {}
         private:
             SDL_Rect m_destination_rect;
