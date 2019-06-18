@@ -25,8 +25,8 @@ namespace Pidgeot {
 
         // Read configuration file
         m_config = std::unique_ptr<Config>(new Config("resources/pidgeot_engine.conf"));
-        int window_width = m_config->getNumOption("width");
-        int window_height = m_config->getNumOption("height");
+        m_window_width = m_config->getNumOption("width");
+        m_window_height = m_config->getNumOption("height");
         uint32_t window_mode;
         if (m_config->getBoolOption("fullscreen")) window_mode = SDL_WINDOW_FULLSCREEN_DESKTOP;
         else window_mode = SDL_WINDOW_SHOWN;
@@ -41,11 +41,12 @@ namespace Pidgeot {
         m_frames_per_second = m_config->getNumOption("fps");
 
         // Create required objects
-        m_window = std::shared_ptr<Window>(new Window(window_title.c_str(), window_width, window_height, window_mode));
+        m_window = std::shared_ptr<Window>(new Window(window_title.c_str(), m_window_width, m_window_height, window_mode));
         m_renderer = std::shared_ptr<Renderer>(new Renderer(m_window, renderer_flags));
         m_resource_manager = std::shared_ptr<ResourceManager>(new ResourceManager(m_renderer));
         m_input = std::shared_ptr<Input>(new Input);
         m_state_manager = std::shared_ptr<StateManager>(new StateManager());
+        m_camera_manager = std::shared_ptr<CameraManager>(new CameraManager());
 
         // Allocate memory for singleton pointer
         mInstance = this;

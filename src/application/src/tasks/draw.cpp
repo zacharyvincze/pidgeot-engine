@@ -14,5 +14,5 @@ void TaskDraw::update() {
     m_player->update();
     m_player->draw();
 
-    m_text->print("Yeah, looks like this is all in order!", 0, 0);
+    // m_text->print("Testing bottom screen text shit...", 0, Pidgeot::Engine().get().getWindowHeight()-16);
 }
