@@ -2,7 +2,7 @@
 
 TaskDraw::TaskDraw() {
     m_player = std::unique_ptr<Player>(new Player(0,0));
-    m_text = std::unique_ptr<Pidgeot::Text>(new Pidgeot::Text("resources/fonts/apple-kid.PNG", 8, 16));
+    m_text = std::unique_ptr<Pidgeot::Text>(new Pidgeot::Text(Pidgeot::Engine::get().config().getOption("fontpath"), 8, 16));
 }
 
 void TaskDraw::update() {
@@ -14,5 +14,8 @@ void TaskDraw::update() {
     m_player->update();
     m_player->draw();
 
-    // m_text->print("Testing bottom screen text shit...", 0, Pidgeot::Engine().get().getWindowHeight()-16);
+    std::string debug_string = "X: " + std::to_string(m_player->getPosition().x) + " Y: " + std::to_string(m_player->getPosition().y);
+
+    m_text->print("DEBUG MENU:", 0, Pidgeot::Engine::get().getWindowHeight()-32);
+    m_text->print(debug_string, 0, Pidgeot::Engine::get().getWindowHeight()-16);
 }

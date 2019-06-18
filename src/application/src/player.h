@@ -16,6 +16,9 @@ class Player {
         inline void moveDown() { m_vertical_velocity = PLAYER_SPEED; }
         inline void moveLeft() { m_horizontal_velocity = -PLAYER_SPEED; }
         inline void moveRight() { m_horizontal_velocity = PLAYER_SPEED; }
+
+        inline SDL_Rect getPosition() { return m_position; }
+        inline SDL_Rect getBoundingBox() { return m_bounding_box; }
     private:
         std::vector<Pidgeot::Sprite*> m_sprites;
         SDL_Rect m_position, m_bounding_box;    // Bounding box will eventually be converted into a rigid 2d body sometime during development

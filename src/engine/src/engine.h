@@ -32,6 +32,7 @@ namespace Pidgeot {
             inline Input& input() { return *m_input; }
             inline StateManager& stateManager() { return *m_state_manager; }
             inline CameraManager& cameraManager() { return *m_camera_manager; }
+            inline Config& config() { return *m_config; }
 
             inline long getTicks() { return m_timer.ticks(); }
 
@@ -48,7 +49,7 @@ namespace Pidgeot {
             std::shared_ptr<StateManager> m_state_manager;
             std::shared_ptr<CameraManager> m_camera_manager;
             
-            std::unique_ptr<Config> m_config;
+            std::shared_ptr<Config> m_config;
 
             // Main flag for running engine loop
             bool mRunning;
