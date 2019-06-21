@@ -11,11 +11,17 @@ void TaskDraw::update() {
     if (Pidgeot::Engine::get().input().wasKeyHeld(SDL_SCANCODE_UP)) m_player->moveUp();
     if (Pidgeot::Engine::get().input().wasKeyHeld(SDL_SCANCODE_DOWN)) m_player->moveDown();
 
+    int camera_x = Pidgeot::Engine::get().cameraManager().getActiveCamera().getPosition().x;
+    int camera_y = Pidgeot::Engine::get().cameraManager().getActiveCamera().getPosition().y;
+    if (Pidgeot::Engine::get().input().wasKeyHeld(SDL_SCANCODE_A))
+        Pidgeot::Engine::get().cameraManager().getActiveCamera().setPosition(camera_x+1, camera_y);
+
     m_player->update();
     m_player->draw();
 
     std::string debug_string = "X: " + std::to_string(m_player->getPosition().x) + " Y: " + std::to_string(m_player->getPosition().y);
 
+    m_text->print("GUESS IT'S TIME TO IMPLEMENT SOME COLLISIONS :)", 0, 0);
     m_text->print("DEBUG MENU:", 0, Pidgeot::Engine::get().getWindowHeight()-32);
     m_text->print(debug_string, 0, Pidgeot::Engine::get().getWindowHeight()-16);
 }

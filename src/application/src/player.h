@@ -10,7 +10,7 @@ class Player {
         ~Player();
 
         void update();
-        inline void draw() { m_sprites[IDLE_UP]->draw(m_position.x, m_position.y); }
+        void draw();
 
         inline void moveUp() { m_vertical_velocity = -PLAYER_SPEED; }
         inline void moveDown() { m_vertical_velocity = PLAYER_SPEED; }
@@ -28,4 +28,7 @@ class Player {
 
         const int PLAYER_SPEED = 1;
         int m_horizontal_velocity, m_vertical_velocity;
+
+        const int PLAYER_WIDTH = 32;
+        const int PLAYER_HEIGHT = 48;
 };
