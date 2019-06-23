@@ -4,11 +4,11 @@
 
 Application::Application() {
     APP_INFO("Initializing application");
-    stateManager().pushState(new TestState("main_test"));
-    stateManager().setActiveState("main_test");
+    m_state_manager.pushState(new TestState("main_test", *m_renderer, *m_resource_manager, m_camera_manager, m_input, m_config));
+    m_state_manager.setActiveState("main_test");
 
-    cameraManager().pushCamera(new Pidgeot::Camera("main", 0,0,getWindowWidth(), getWindowHeight()));
-    cameraManager().setActiveCamera("main");
+    m_camera_manager.pushCamera(new Pidgeot::Camera("main", 0,0,getWindowWidth(), getWindowHeight()));
+    m_camera_manager.setActiveCamera("main");
     APP_INFO("Successfully initialized application");
 }
 

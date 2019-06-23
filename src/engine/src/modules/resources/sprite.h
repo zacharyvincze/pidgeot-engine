@@ -7,7 +7,7 @@
 namespace Pidgeot {
     class Sprite {
         public:
-            Sprite(const std::string texture, int source_x, int source_y, int width, int height);
+            Sprite(const std::string texture, int source_x, int source_y, int width, int height, Pidgeot::Renderer& renderer, Pidgeot::ResourceManager& resource_manager);
             ~Sprite();
 
             virtual void draw(int x, int y);
@@ -17,5 +17,8 @@ namespace Pidgeot {
             SDL_Rect m_source_rect;
 
             Pidgeot::Texture *m_texture;
+
+            Pidgeot::Renderer& m_renderer;
+            Pidgeot::ResourceManager& m_resource_manager;
     };
 }

@@ -1,5 +1,8 @@
 #include "tasks/end.h"
 
+TaskEnd::TaskEnd(Pidgeot::Renderer& renderer) :
+    m_renderer(renderer) {}
+
 void TaskEnd::update() {
-    Pidgeot::Engine::get().renderer().present();
+    m_renderer.present();
 }

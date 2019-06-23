@@ -3,11 +3,15 @@
 #include "engine.h"
 
 namespace Pidgeot {
-    AnimatedSprite::AnimatedSprite(const std::string filepath, int source_x, int source_y, int width, int height, int frames, int frame_millis) :
-        m_frame_count(frames), m_frame_millis(frame_millis), m_current_frame(0), Sprite(filepath, source_x, source_y, width, height) {
+    AnimatedSprite::AnimatedSprite(const std::string filepath, int source_x, int source_y, int width, int height, int frames, int frame_millis, Pidgeot::Renderer& renderer, Pidgeot::ResourceManager& resource_manager) :
+        m_frame_count(frames), m_frame_millis(frame_millis),
+        m_current_frame(0),
+        m_renderer(renderer),
+        m_resource_manager(resource_manager),
+        Sprite(filepath, source_x, source_y, width, height, renderer, resource_manager) {
         
         for (int frame = 0; frame < m_frame_count; frame++) {
-            m_sprites.push_back(new Sprite(filepath, source_x+(frame*width), source_y, width, height));
+            m_sprites.push_back(new Sprite(filepath, source_x+(frame*width), source_y, width, height, m_renderer, m_resource_manager));
         }
 
         m_timer_start = Engine::get().getTicks();

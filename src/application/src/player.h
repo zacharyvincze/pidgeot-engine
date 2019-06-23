@@ -6,7 +6,7 @@
 
 class Player {
     public:
-        Player(int x, int y);
+        Player(int x, int y, Pidgeot::Renderer& renderer, Pidgeot::CameraManager& camera_manager, Pidgeot::ResourceManager& resource_manager);
         ~Player();
 
         void update();
@@ -31,4 +31,8 @@ class Player {
 
         const int PLAYER_WIDTH = 32;
         const int PLAYER_HEIGHT = 48;
+
+        Pidgeot::Renderer& m_renderer;
+        Pidgeot::CameraManager& m_camera_manager;
+        Pidgeot::ResourceManager& m_resource_manager;
 };
