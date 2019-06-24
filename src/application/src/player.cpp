@@ -2,21 +2,14 @@
 
 #include "log.h"
 
-Player::Player(int x, int y, Pidgeot::Renderer& renderer, Pidgeot::CameraManager& camera_manager, Pidgeot::ResourceManager& resource_manager) : 
-    m_position({x,y,32,48}),
-    m_bounding_box({x,y,32,48}),
-    m_horizontal_velocity(0),
-    m_vertical_velocity(0),
-    m_renderer(renderer),
-    m_resource_manager(resource_manager),
-    m_camera_manager(camera_manager) {
-
+Player::Player(int x, int y)
+    : m_position({x,y,32,48}), m_bounding_box({x,y,32,48}), m_horizontal_velocity(0), m_vertical_velocity(0) {
     APP_DEBUG("Created player at {:p}", (void*)this);
 
     m_current_sprite = IDLE_UP;
 
     // TODO: Create the rest of the sprites required for the player to have full movement animations
-    m_sprites.push_back(new Pidgeot::AnimatedSprite("resources/sprites/ness.png", 0, 0, 32, 48, 8, 50, m_renderer, m_resource_manager));
+    m_sprites.push_back(new Pidgeot::AnimatedSprite("resources/sprites/ness.png", 0, 0, 32, 48, 8, 50));
 }
 
 Player::~Player() {
@@ -30,8 +23,8 @@ void Player::update() {
     m_position.y += m_vertical_velocity;
 
     // Offset player position based on camera location
-    m_position.x += m_camera_manager.getActiveCamera().getPosition().x;
-    m_position.y += m_camera_manager.getActiveCamera().getPosition().y;
+    m_position.x += Pidgeot::Engine::get().cameraManager().getActiveCamera().getPosition().x;
+    m_position.y += Pidgeot::Engine::get().cameraManager().getActiveCamera().getPosition().y;
 
     // TODO: Bounding box will eventually have to differ from the player's position
     m_bounding_box = m_position;
@@ -46,6 +39,6 @@ void Player::draw() {
     m_sprites[m_current_sprite]->draw(m_position.x, m_position.y);
 
     // TODO: Add debug flags so that the following snippet is not included in the final build
-    m_renderer.setDrawColor(0xFF, 0x00, 0x00, 0x60);
-    m_renderer.drawFillRect(&m_bounding_box);
+    Pidgeot::Engine::get().renderer().setDrawColor(0xFF, 0x00, 0x00, 0x60);
+    Pidgeot::Engine::get().renderer().drawFillRect(&m_bounding_box);
 }

@@ -6,7 +6,7 @@
 namespace Pidgeot {
     class AnimatedSprite : public Sprite {
         public:
-            AnimatedSprite(const std::string filepath, int source_x, int source_y, int width, int height, int frames, int frame_millis, Pidgeot::Renderer& renderer, Pidgeot::ResourceManager& resource_manager);
+            AnimatedSprite(const std::string filepath, int source_x, int source_y, int width, int height, int frames, int frame_millis);
             ~AnimatedSprite();
 
             void draw(int x, int y) override;
@@ -16,8 +16,5 @@ namespace Pidgeot {
             long m_timer_start, m_elapsed_time;
             int m_current_frame, m_frame_count, m_frame_millis;
             std::vector<Sprite*> m_sprites;
-
-            Pidgeot::Renderer& m_renderer;
-            Pidgeot::ResourceManager& m_resource_manager;
     };
 }

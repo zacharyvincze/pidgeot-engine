@@ -26,28 +26,36 @@ namespace Pidgeot {
             inline uint getWindowWidth() { return m_window_width; }
             inline uint getWindowHeight() { return m_window_height; }
 
+            inline Renderer& renderer() { return *m_renderer; }
+            inline Window& window() { return *m_window; }
+            inline ResourceManager& resources() { return *m_resource_manager; }
+            inline Input& input() { return *m_input; }
+            inline StateManager& stateManager() { return *m_state_manager; }
+            inline CameraManager& cameraManager() { return *m_camera_manager; }
+            inline Config& config() { return *m_config; }
+
             inline long getTicks() { return m_timer.ticks(); }
 
             inline void quit() { mRunning = false; }
         private:
             static Engine* mInstance;
+            
+            Timer m_timer;
+
+            std::shared_ptr<Renderer> m_renderer;
+            std::shared_ptr<Window> m_window;
+            std::shared_ptr<ResourceManager> m_resource_manager;
+            std::shared_ptr<Input> m_input;
+            std::shared_ptr<StateManager> m_state_manager;
+            std::shared_ptr<CameraManager> m_camera_manager;
+            
+            std::shared_ptr<Config> m_config;
 
             // Main flag for running engine loop
             bool mRunning;
 
             uint m_frames_per_second;
             uint m_window_width, m_window_height;
-            
-        protected:
-            Pidgeot::Timer m_timer;
-            Pidgeot::Input m_input;
-            Pidgeot::StateManager m_state_manager;
-            Pidgeot::CameraManager m_camera_manager;
-            Pidgeot::Config m_config;
-
-            std::shared_ptr<Pidgeot::Window> m_window;
-            std::shared_ptr<Pidgeot::Renderer> m_renderer;
-            std::shared_ptr<Pidgeot::ResourceManager> m_resource_manager;
     };
 
     Engine* createApplication();
