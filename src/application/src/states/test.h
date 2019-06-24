@@ -2,7 +2,7 @@
 
 #include "modules/gamestate.h"
 
-class TestState : public GameState {
+class TestState : public Pidgeot::GameState {
     public:
         TestState(const std::string name);
 };

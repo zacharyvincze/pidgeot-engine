@@ -5,7 +5,7 @@ namespace Pidgeot {
         m_source_rect({source_x, source_y, width, height}),
         m_destination_rect({0, 0, width, height}) {
 
-        m_texture = Engine::get().resources().get<Pidgeot::Texture>(texture);
+        m_texture = Engine::get().getResourceManager().get<Pidgeot::Texture>(texture);
     }
 
     Sprite::~Sprite() {}
@@ -13,6 +13,6 @@ namespace Pidgeot {
     void Sprite::draw(int x, int y) {
         m_destination_rect.x = x;
         m_destination_rect.y = y;
-        Pidgeot::Engine::get().renderer().drawTexture(m_texture, &m_source_rect, &m_destination_rect);
+        Pidgeot::Engine::get().getRenderer().drawTexture(m_texture, &m_source_rect, &m_destination_rect);
     }
 }

@@ -31,4 +31,7 @@ class Player {
 
         const int PLAYER_WIDTH = 32;
         const int PLAYER_HEIGHT = 48;
+
+        Pidgeot::Renderer& m_renderer;
+        Pidgeot::CameraManager& m_camera_manager;
 };
