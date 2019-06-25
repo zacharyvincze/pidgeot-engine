@@ -21,12 +21,12 @@ namespace Pidgeot {
     }
 
     Renderer& Engine::getRenderer() {
-        if (m_renderer == nullptr) m_renderer = std::shared_ptr<Renderer>(new Renderer(SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_ACCELERATED));
+        if (m_renderer == nullptr) m_renderer = std::shared_ptr<Renderer>(new Renderer(m_video_flags));
         return *m_renderer;
     }
 
     Window& Engine::getWindow() {
-        if (m_window == nullptr) m_window = std::shared_ptr<Window>(new Window("Testing", 640, 320, SDL_WINDOW_SHOWN));
+        if (m_window == nullptr) m_window = std::shared_ptr<Window>(new Window(m_window_title, m_window_width, m_window_height, m_window_flags));
         return *m_window;
     }
 
@@ -60,22 +60,24 @@ namespace Pidgeot {
     Engine::Engine() {
         Pidgeot::Log::init();
         ENGINE_INFO("Initializing PidgeotEngine");
+
+        // Read configuration
         m_frames_per_second = getConfig().getNumOption("fps");
+        m_window_width = getConfig().getNumOption("width");
+        m_window_height = getConfig().getNumOption("height");
+        if (getConfig().getBoolOption("enable_vsync")) m_video_flags |= SDL_RENDERER_PRESENTVSYNC;
+        if (getConfig().getBoolOption("renderer_accelerated")) m_video_flags |= SDL_RENDERER_ACCELERATED;
+        if (getConfig().getBoolOption("fullscreen")) m_window_flags = SDL_WINDOW_FULLSCREEN_DESKTOP;
+        else m_window_flags = SDL_WINDOW_SHOWN;
+        m_window_title = getConfig().getOption("title");
 
         // Init SDL subsystems
         SDL_Init(SDL_INIT_EVERYTHING);
         IMG_Init(IMG_INIT_PNG);
 
-        // Frames per second
-        // m_frames_per_second = m_config->getNumOption("fps");
-
-        // Allocate memory for singleton pointer
         mInstance = this;
-
-        // Set engine loop flag to true and start running the engine
         mRunning = true;
 
-        // Start engine clock
         getTimer().reset();
 
         ENGINE_INFO("Successfully initialized PidgeotEngine");

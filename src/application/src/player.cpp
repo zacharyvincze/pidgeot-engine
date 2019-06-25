@@ -2,9 +2,10 @@
 
 #include "log.h"
 
-Player::Player(int x, int y)
-    : m_position({x,y,32,48}),
-    m_bounding_box({x,y,32,48}), m_horizontal_velocity(0),
+Player::Player(int x, int y) :
+    m_position({x,y,32,48}),
+    m_bounding_box({x,y,32,48}),
+    m_horizontal_velocity(0),
     m_vertical_velocity(0),
     m_renderer(Pidgeot::Engine::get().getRenderer()),
     m_camera_manager(Pidgeot::Engine::get().getCameraManager()) {
@@ -27,10 +28,6 @@ void Player::update() {
     m_position.x += m_horizontal_velocity;
     m_position.y += m_vertical_velocity;
 
-    // Offset player position based on camera location
-    m_position.x += m_camera_manager.getActiveCamera().getPosition().x;
-    m_position.y += m_camera_manager.getActiveCamera().getPosition().y;
-
     // TODO: Bounding box will eventually have to differ from the player's position
     m_bounding_box = m_position;
 
@@ -41,9 +38,10 @@ void Player::update() {
 }
 
 void Player::draw() {
-    m_sprites[m_current_sprite]->draw(m_position.x, m_position.y);
+    m_sprites[m_current_sprite]->draw(m_position.x-m_camera_manager.getActiveCamera().getPosition().x, m_position.y-m_camera_manager.getActiveCamera().getPosition().y);
 
     // TODO: Add debug flags so that the following snippet is not included in the final build
     m_renderer.setDrawColor(0xFF, 0x00, 0x00, 0x60);
-    m_renderer.drawFillRect(&m_bounding_box);
+    SDL_Rect relative_bounding_box = {m_bounding_box.x-m_camera_manager.getActiveCamera().getPosition().x, m_bounding_box.y-m_camera_manager.getActiveCamera().getPosition().y, m_bounding_box.w, m_bounding_box.h};
+    m_renderer.drawFillRect(&relative_bounding_box);
 }

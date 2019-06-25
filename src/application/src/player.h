@@ -21,7 +21,7 @@ class Player {
         inline SDL_Rect getBoundingBox() { return m_bounding_box; }
     private:
         std::vector<Pidgeot::Sprite*> m_sprites;
-        SDL_Rect m_position, m_bounding_box;    // Bounding box will eventually be converted into a rigid 2d body sometime during development
+        SDL_Rect m_position, m_bounding_box;
 
         enum SpriteIndex {IDLE_UP, IDLE_DOWN, IDLE_LEFT, IDLE_RIGHT, WALKING_UP, WALKING_DOWN, WALKING_LEFT, WALKING_RIGHT};
         SpriteIndex m_current_sprite;

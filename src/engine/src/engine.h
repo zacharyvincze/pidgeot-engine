@@ -55,6 +55,8 @@ namespace Pidgeot {
 
             uint m_frames_per_second;
             uint m_window_width, m_window_height;
+            uint32_t m_video_flags, m_window_flags;
+            std::string m_window_title;
     };
 
     Engine* createApplication();
