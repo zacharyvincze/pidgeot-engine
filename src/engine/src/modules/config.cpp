@@ -28,7 +28,6 @@ namespace Pidgeot {
             std::transform(token.begin(), token.end(), token.begin(), ::tolower);
             token = stringutils::trim(token);
             std::string option = input.erase(0, input.find(delimeter)+1);
-            std::transform(option.begin(), option.end(), option.begin(), ::tolower);
             option = stringutils::trim(option);
 
             m_options.insert(std::pair<std::string, std::string>(token, option));
