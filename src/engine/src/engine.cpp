@@ -7,12 +7,12 @@
 #include <thread>
 
 namespace Pidgeot {
-    Engine* Engine::mInstance = nullptr;
+    Engine* Engine::s_instance = nullptr;
 
     Engine::~Engine() {
         // Deallocate engine pointer
         // delete minstance;
-        delete mInstance;
+        delete s_instance;
     }
 
     Config& Engine::getConfig() {
@@ -75,8 +75,8 @@ namespace Pidgeot {
         SDL_Init(SDL_INIT_EVERYTHING);
         IMG_Init(IMG_INIT_PNG);
 
-        mInstance = this;
-        mRunning = true;
+        s_instance = this;
+        m_running = true;
 
         getTimer().reset();
 
@@ -84,14 +84,28 @@ namespace Pidgeot {
     }
 
     void Engine::run() {
-        while (mRunning) {
+        while (m_running) {
             int start_time = getTimer().ticks();
-            getStateManager().update();
+
+            getInput().reset();
+            getInput().pollEvents();
+
+            getStateManager().onUpdate();
+            getStateManager().onRender();
+
+            // Limit frames per second
             int elapsed_time = getTimer().ticks() - start_time;
             if (1000/m_frames_per_second > elapsed_time) {
                 std::this_thread::sleep_for(std::chrono::milliseconds(1000/m_frames_per_second-elapsed_time));
             }
         }
     }
-    
+
+    void Engine::quit() {
+        ENGINE_INFO("Quitting PidgeotEngine");
+        m_running = false;
+        SDL_Quit();
+        IMG_Quit();
+        ENGINE_INFO("Successfully quit PidgeotEngine");
+    }
 }

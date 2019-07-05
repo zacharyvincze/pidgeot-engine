@@ -7,14 +7,12 @@
 namespace Pidgeot {
     class Camera {
         public:
-            Camera(const std::string name, int x, int y, int width, int height);
+            Camera(const std::string id, int x, int y, int width, int height);
             ~Camera();
 
-            inline void setPosition(int x, int y) { m_position.x = x; m_position.y = y; }
-            inline std::string getName() { return m_name; }
-            inline SDL_Rect getPosition() { return m_position; }
+            inline std::string getID() { return m_id; }
+            SDL_Rect position;
         private:
-            SDL_Rect m_position;
-            std::string m_name;
+            std::string m_id;
     };
 }

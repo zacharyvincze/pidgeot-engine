@@ -17,5 +17,8 @@ namespace Pidgeot {
             SDL_Rect m_source_rect;
 
             Pidgeot::Texture *m_texture;
+
+            Pidgeot::Renderer& m_renderer;
+            Pidgeot::ResourceManager& m_resource_manager;
     };
 }

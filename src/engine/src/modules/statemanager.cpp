@@ -4,24 +4,45 @@
 #include "log.h"
 
 namespace Pidgeot {
-    void StateManager::update() {
+    StateManager::~StateManager() {
         for (std::map<std::string, GameState*>::iterator i = m_gamestates.begin(); i != m_gamestates.end(); i++) {
-            i->second->update();
+            delete i->second;
+        }
+    }
+
+    void StateManager::onUpdate() {
+        for (std::map<std::string, GameState*>::iterator i = m_gamestates.begin(); i != m_gamestates.end(); i++) {
+            i->second->onUpdate();
+        }
+    }
+
+    void StateManager::onRender() {
+        for (std::map<std::string, GameState*>::iterator i = m_gamestates.begin(); i != m_gamestates.end(); i++) {
+            i->second->onRender();
         }
     }
 
     void StateManager::pushState(GameState* state) {
-        m_gamestates.insert(std::pair<std::string, GameState*>(state->getName(), state));
-        ENGINE_DEBUG("Pushed Gamestate: {}", state->getName());
+        m_gamestates.insert(std::pair<std::string, GameState*>(state->getID(), state));
+        ENGINE_DEBUG("Pushed Gamestate: {}", state->getID());
     }
 
-    void StateManager::setActiveState(const std::string name) {
+    void StateManager::setActiveState(const std::string id) {
         try {
-            m_active_state = m_gamestates.at(name);
+            m_active_state = m_gamestates.at(id);
         } catch (std::out_of_range &e) {
-            ENGINE_ERROR("Gamestate {} does not exist: {}", name.c_str(), e.what());
+            ENGINE_ERROR("Gamestate {} does not exist: {}", id.c_str(), e.what());
             exit(-1);
         }
-        ENGINE_DEBUG("Set active state: {}", name);
+        ENGINE_DEBUG("Set active state: {}", id);
+    }
+
+    GameState& StateManager::getState(const std::string id) {
+        try {
+            return *m_gamestates.at(id);
+        } catch (std::out_of_range &e) {
+            ENGINE_ERROR("GameState {} does not exist: {}", id.c_str(), e.what());
+            exit(-1);
+        }
     }
 }

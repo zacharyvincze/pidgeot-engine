@@ -3,7 +3,7 @@
 namespace Pidgeot {
     class Task {
         public:
-            virtual void update() {}
-        private:
+            virtual void onUpdate() {}
+            virtual void onRender() {}
     };   
 }

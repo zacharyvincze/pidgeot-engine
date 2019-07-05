@@ -12,13 +12,13 @@ namespace Pidgeot {
         delete m_active_camera;
     }
 
-    void CameraManager::setActiveCamera(const std::string name) {
+    void CameraManager::setActiveCamera(const std::string id) {
         try {
-            m_active_camera = m_cameras.at(name);
+            m_active_camera = m_cameras.at(id);
         } catch (std::out_of_range e) {
             ENGINE_ERROR("CameraManager error when setting active camera: {}", e.what());
             exit(-1);
         }
-        ENGINE_DEBUG("Set active camera: {}", m_active_camera->getName());
+        ENGINE_DEBUG("Set active camera: {}", m_active_camera->getID());
     }
 }

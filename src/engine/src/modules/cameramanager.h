@@ -11,10 +11,10 @@ namespace Pidgeot {
         public:
             ~CameraManager();
 
-            inline void pushCamera(Camera* camera) { ENGINE_DEBUG("Pushed Camera: {}", camera->getName()); m_cameras.insert(std::pair<std::string, Camera*>(camera->getName(), camera)); }
-            inline void pullCamera(const std::string name) { delete m_cameras.at(name); m_cameras.erase(name); }
+            inline void pushCamera(Camera* camera) { ENGINE_DEBUG("Pushed Camera: {}", camera->getID()); m_cameras.insert(std::pair<std::string, Camera*>(camera->getID(), camera)); }
+            inline void pullCamera(const std::string id) { delete m_cameras.at(id); m_cameras.erase(id); }
 
-            void setActiveCamera(const std::string name);
+            void setActiveCamera(const std::string id);
 
             inline Camera& getActiveCamera() { return *m_active_camera; }
 

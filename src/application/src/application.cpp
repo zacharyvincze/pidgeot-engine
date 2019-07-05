@@ -1,14 +1,15 @@
 #include "application.h"
 
-#include "states/states.h"
+#include "tasks/tasks.h"
 
 Application::Application() {
     APP_INFO("Initializing application");
-    getStateManager().pushState(new TestState("main_test"));
-    getStateManager().setActiveState("main_test");
 
-    getCameraManager().pushCamera(new Pidgeot::Camera("main", 0,0,getWindowWidth(), getWindowHeight()));
-    getCameraManager().setActiveCamera("main");
+    // Create state and push back state tasks
+    getStateManager().pushState(new Pidgeot::GameState("teststate"));
+    getStateManager().getState("teststate").pushTask(new ExampleTask());
+    getStateManager().setActiveState("teststate");
+
     APP_INFO("Successfully initialized application");
 }
 

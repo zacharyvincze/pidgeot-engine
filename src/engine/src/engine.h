@@ -17,7 +17,7 @@
 namespace Pidgeot {
     class Engine {
         public:
-            inline static Engine& get() { return *mInstance; }
+            inline static Engine& get() { return *s_instance; }
             Engine();
             ~Engine();
 
@@ -37,9 +37,9 @@ namespace Pidgeot {
 
             inline long getTicks() { return getTimer().ticks(); }
 
-            inline void quit() { mRunning = false; }
+            void quit();
         private:
-            static Engine* mInstance;
+            static Engine* s_instance;
 
             std::shared_ptr<Pidgeot::Renderer> m_renderer;
             std::shared_ptr<Pidgeot::Window> m_window;
@@ -51,7 +51,7 @@ namespace Pidgeot {
             std::shared_ptr<Pidgeot::Config> m_config;
 
             // Main flag for running engine loop
-            bool mRunning;
+            bool m_running;
 
             uint m_frames_per_second;
             uint m_window_width, m_window_height;
