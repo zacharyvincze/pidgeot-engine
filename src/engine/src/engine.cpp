@@ -16,46 +16,49 @@ namespace Pidgeot {
     }
 
     Config& Engine::getConfig() {
-        if (m_config == nullptr) m_config = std::shared_ptr<Config>(new Config("resources/pidgeot_engine.conf"));
+        if (m_config == nullptr) m_config.reset(new Config("resources/pidgeot_engine.conf"));
         return *m_config;
     }
 
     Renderer& Engine::getRenderer() {
-        if (m_renderer == nullptr) m_renderer = std::shared_ptr<Renderer>(new Renderer(m_video_flags));
+        if (m_renderer == nullptr) m_renderer.reset(new Renderer(m_video_flags));
         return *m_renderer;
     }
 
     Window& Engine::getWindow() {
-        if (m_window == nullptr) m_window = std::shared_ptr<Window>(new Window(m_window_title, m_window_width, m_window_height, m_window_flags));
+        if (m_window == nullptr) m_window.reset(new Window(m_window_title, m_window_width, m_window_height, m_window_flags));
         return *m_window;
     }
 
     Input& Engine::getInput() {
-        if (m_input == nullptr) m_input = std::shared_ptr<Input>(new Input());
+        if (m_input == nullptr) m_input.reset(new Input());
         return *m_input;
     }
 
     ResourceManager& Engine::getResourceManager() {
-        if (m_resource_manager == nullptr) m_resource_manager = std::shared_ptr<ResourceManager>(new ResourceManager());
+        if (m_resource_manager == nullptr) m_resource_manager.reset(new ResourceManager());
         return *m_resource_manager;
     }
 
     StateManager& Engine::getStateManager() {
-        if (m_state_manager == nullptr) m_state_manager = std::shared_ptr<StateManager>(new StateManager());
+        if (m_state_manager == nullptr) m_state_manager.reset(new StateManager());
         return *m_state_manager;
     }
 
     CameraManager& Engine::getCameraManager() {
-        if (m_camera_manager == nullptr) m_camera_manager = std::shared_ptr<CameraManager>(new CameraManager());
+        if (m_camera_manager == nullptr) m_camera_manager.reset(new CameraManager());
         return *m_camera_manager;
     }
 
     Timer& Engine::getTimer() {
-        if (m_timer == nullptr) m_timer = std::shared_ptr<Timer>(new Timer());
+        if (m_timer == nullptr) m_timer.reset(new Timer());
         return *m_timer;
     }
 
-    Pidgeot::
+    EntityManager& Engine::getEntityManager() {
+        if (m_entityManager == nullptr) m_entityManager.reset(new EntityManager());
+        return *m_entityManager;
+    }
 
     Engine::Engine() {
         Pidgeot::Log::init();

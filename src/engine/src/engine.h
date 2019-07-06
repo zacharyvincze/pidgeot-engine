@@ -11,6 +11,7 @@
 #include "modules/config.h"
 #include "modules/statemanager.h"
 #include "modules/cameramanager.h"
+#include "modules/entitymanager.h"
 
 #include "modules/resources/resourcemanager.h"
 
@@ -34,6 +35,7 @@ namespace Pidgeot {
             Pidgeot::Config& getConfig();
             Pidgeot::Timer& getTimer();
             Pidgeot::Input& getInput();
+            Pidgeot::EntityManager& getEntityManager();
 
             inline long getTicks() { return getTimer().ticks(); }
 
@@ -49,6 +51,7 @@ namespace Pidgeot {
             std::shared_ptr<Pidgeot::CameraManager> m_camera_manager;
             std::shared_ptr<Pidgeot::Timer> m_timer;
             std::shared_ptr<Pidgeot::Config> m_config;
+            std::shared_ptr<Pidgeot::EntityManager> m_entityManager;
 
             // Main flag for running engine loop
             bool m_running;
