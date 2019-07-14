@@ -7,8 +7,15 @@
 namespace Pidgeot {
     class EntityManager {
         public:
+            ~EntityManager();
+
             void pushEntity(Pidgeot::Entity* entity);
             void removeEntity(Entity* entity);
+
+            void onUpdate();
+            void onRender();
+
+            // Clears all entity maps and destroys any pointers
             void removeAllEntities();
 
             inline int getCollidableCount() { return m_collidableEntities.size(); }

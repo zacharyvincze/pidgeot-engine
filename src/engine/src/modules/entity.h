@@ -7,6 +7,7 @@ namespace Pidgeot {
     class Entity {
         public:
             Entity(int x, int y, int width, int height);
+            ~Entity();
 
             virtual void onUpdate() {}
             virtual void onRender() {}
