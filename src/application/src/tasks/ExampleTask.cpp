@@ -12,11 +12,4 @@ void ExampleTask::onUpdate() {
 }
 
 void ExampleTask::onRender() {
-    m_renderer.setDrawColor(0,0,0,0);
-    m_renderer.clear();
-
-    m_entityManager.onUpdate();
-    m_entityManager.onRender();
-
-    m_renderer.present();
 }

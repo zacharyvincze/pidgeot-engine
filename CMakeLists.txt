@@ -12,6 +12,7 @@ aux_source_directory(src/engine/src SRC_ENGINE)
 aux_source_directory(src/engine/src/modules SRC_ENGINE_MODULES)
 aux_source_directory(src/engine/src/modules/map SRC_ENGINE_MODULES_MAP)
 aux_source_directory(src/engine/src/modules/resources SRC_ENGINE_MODULES_RESOURCES)
+aux_source_directory(src/engine/src/modules/resources/map SRC_ENGINE_RESOURCES_MAP)
 aux_source_directory(src/engine/src/utils SRC_ENGINE_UTILS)
 
 set(SOURCES
@@ -22,6 +23,7 @@ set(SOURCES
         ${SRC_ENGINE_MODULES}
         ${SRC_ENGINE_MODULES_MAP}
         ${SRC_ENGINE_MODULES_RESOURCES}
+        ${SRC_ENGINE_MODULES_MAP}
         ${SRC_ENGINE_UTILS})
 
 # Required packages and include paths
@@ -32,6 +34,7 @@ pkg_search_module(SDL2IMAGE REQUIRED SDL2_image)
 include_directories(${SDL2_INCLUDE_DIRS} ${SDL2IMAGE_INCLUDE_DIRS})
 include_directories(src/application/src src/engine/src)
 include_directories(vendor/spdlog/include)
+include_directories(vendor/rapidxml/include)
 
 # Compile spdlog as a static library
 find_package(Threads REQUIRED)

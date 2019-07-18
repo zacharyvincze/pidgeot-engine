@@ -92,9 +92,17 @@ namespace Pidgeot {
 
             getInput().reset();
             getInput().pollEvents();
+            getRenderer().clear();
 
+            // Update current state and all entities
             getStateManager().onUpdate();
+            getEntityManager().onUpdate();
+
+            // Render current state and all entities, draw graphics in buffer
             getStateManager().onRender();
+            getEntityManager().onRender();
+
+            getRenderer().present();
 
             // Limit frames per second
             int elapsed_time = getTimer().ticks() - start_time;
