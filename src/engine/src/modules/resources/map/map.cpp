@@ -8,9 +8,6 @@ namespace Pidgeot {
     Map::Map(int x, int y, const std::string tilemap, const std::string tileset)
     : m_position({x,y,0,0}), m_renderer(Pidgeot::Engine::get().getRenderer()), m_resourceManager(Pidgeot::Engine::get().getResourceManager()),
     m_cameraManager(Pidgeot::Engine::get().getCameraManager()) {
-        // Read tileset
-        m_tileset = m_resourceManager.get<Pidgeot::Texture>(tileset);
-
         // Read tilemap
         std::ostringstream sstream;
         std::ifstream infile(tilemap.c_str());
@@ -25,12 +22,12 @@ namespace Pidgeot {
         m_position.w = atoi(root_node->first_attribute("width")->value());
         m_position.h = atoi(root_node->first_attribute("height")->value());
 
-        m_tileWidth = atoi(root_node->first_attribute("tile_width")->value());
-        m_tileHeight = atoi(root_node->first_attribute("tile_height")->value());
+        m_tileWidth = atoi(root_node->first_attribute("tilewidth")->value());
+        m_tileHeight = atoi(root_node->first_attribute("tileheight")->value());
 
         rapidxml::xml_node<> *data_node = root_node->first_node("layer")->first_node("data");
         std::string layer_data = data_node->value();
-
+        
         // Separate CSV data
         std::stringstream ss(layer_data);
         std::vector<std::string> string_data;
@@ -44,11 +41,15 @@ namespace Pidgeot {
         unsigned int i = 0;
         for (int y = 0; y < m_position.w; y++) {
             for (int x = 0; x < m_position.h; x++) {
-                m_tilemap.push_back(new Tile(atoi(string_data[i].c_str()), x*m_tileWidth, y*m_tileHeight));
+                m_tilemap.push_back(new Tile(atoi(string_data[i].c_str())-1, x*m_tileWidth, y*m_tileHeight));
                 i++;
             }
         }
+        
+        m_tileset.reset(new Tileset(tileset, m_tileWidth));
     }
+
+    Map::~Map() {}
 
     void Map::onUpdate() {
 
@@ -56,6 +57,8 @@ namespace Pidgeot {
 
     void Map::onRender() {
         // Render map with currently active camera in mind
-        for (m_tilemap.size)
+        for (int i = 0; i < m_tilemap.size(); i++) {
+            m_tileset->renderTile(m_tilemap[i]);
+        }
     }
 }

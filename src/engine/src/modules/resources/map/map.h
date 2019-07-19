@@ -2,6 +2,7 @@
 
 #include "engine.h"
 #include "modules/resources/map/tile.h"
+#include "modules/resources/map/tileset.h"
 
 namespace Pidgeot {
     class Map {
@@ -17,7 +18,7 @@ namespace Pidgeot {
 
             unsigned int m_tileWidth, m_tileHeight;
 
-            Pidgeot::Texture* m_tileset;
+            std::shared_ptr<Tileset> m_tileset;
 
             Pidgeot::Renderer& m_renderer;
             Pidgeot::ResourceManager& m_resourceManager;
