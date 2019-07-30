@@ -92,6 +92,7 @@ namespace Pidgeot {
 
             getInput().reset();
             getInput().pollEvents();
+            getRenderer().setDrawColor(0,0,0,1);
             getRenderer().clear();
 
             // Update current state and all entities

@@ -1,5 +1,7 @@
 #include "modules/entitymanager.h"
 
+#include "log.h"
+
 namespace Pidgeot {
     EntityManager::~EntityManager() {
         removeAllEntities();
@@ -31,6 +33,15 @@ namespace Pidgeot {
     void EntityManager::onUpdate() {
         for (std::unordered_map<size_t, Entity*>::iterator i = m_entities.begin(); i!= m_entities.end(); i++) {
             i->second->onUpdate();
+            if (i->second->isCollidable()) {
+                i->second->setColliding(false);
+                // Check collision against every other entity contained within the map
+                for (std::unordered_map<size_t, Entity*>::iterator j = m_collidableEntities.begin(); j != m_collidableEntities.end(); j++) {
+                    if (j->second->getID() != i->second->getID()) {
+                        if (i->second->checkCollision(j->second)) i->second->setColliding(true);
+                    }
+                }
+            }
         }
     }
 

@@ -12,6 +12,7 @@ class Player : public Pidgeot::Entity {
 
         void onUpdate();
         void onRender();
+        SDL_Rect getCollisionRect();
     private:
         unsigned int m_currentSprite;
         std::vector<Pidgeot::Sprite*> m_playerSprites;
@@ -19,4 +20,5 @@ class Player : public Pidgeot::Entity {
 
         Pidgeot::ResourceManager& m_resourceManager;
         Pidgeot::Renderer& m_renderer;
+        Pidgeot::Input& m_input;
 };
