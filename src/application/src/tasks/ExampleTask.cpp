@@ -7,7 +7,11 @@ m_entityManager(Pidgeot::Engine::get().getEntityManager()) {
     // m_entityManager.pushEntity(m_player.get());
     // m_entityManager.pushEntity(m_object.get());
     m_entityManager.pushEntity(new Player(0, 0));
-    m_entityManager.pushEntity(new Object(50, 50, 48, 48));
+    for (int i = 0; i < 10; i++) {
+        for (int j = 0; j < 10; j++) {
+            m_entityManager.pushEntity(new Object(i*48, j*48, 48, 48));
+        }
+    }
 }
 
 void ExampleTask::onUpdate() {
