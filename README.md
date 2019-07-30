@@ -26,6 +26,8 @@ The engine is relatively early in development and being used as a method of lear
 - Resource management
 - Basic camera controls
 - Game state management and task based operations
+- Entity management
+- Axis-aligned entity collision detection
 
 ## What's with the name?
 
