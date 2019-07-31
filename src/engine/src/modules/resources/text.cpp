@@ -10,7 +10,6 @@ Text::Text(const std::string filepath, int char_width, int char_height)
     m_font_texture = Engine::get().getResourceManager().get<Pidgeot::Texture>(filepath);
     m_char_map.resize(0xFF);
 
-    // TODO: Load font positions into memory
     for (int i = 33; i != 126; i++) {
         m_char_map[i] = { (i - 32) * m_char_width, 0, m_char_width, m_char_height };
     }

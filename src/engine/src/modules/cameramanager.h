@@ -16,6 +16,7 @@ public:
         ENGINE_DEBUG("Pushed Camera: {}", camera->getID());
         m_cameras.insert(std::pair<std::string, Camera*>(camera->getID(), camera));
     }
+
     inline void pullCamera(const std::string id)
     {
         delete m_cameras.at(id);

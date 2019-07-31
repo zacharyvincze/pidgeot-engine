@@ -42,14 +42,17 @@ void EntityManager::onUpdate()
 {
     for (std::unordered_map<size_t, Entity*>::iterator i = m_entities.begin(); i != m_entities.end(); i++) {
         i->second->onUpdate();
-        if (i->second->isCollidable()) {
-            i->second->setColliding(false);
-            // Check collision against every other entity contained within the map
-            for (std::unordered_map<size_t, Entity*>::iterator j = m_collidableEntities.begin(); j != m_collidableEntities.end(); j++) {
-                if (j->second->getID() != i->second->getID()) {
-                    if (i->second->checkCollision(j->second))
-                        i->second->setColliding(true);
-                }
+    }
+
+    // Deal with collisions between collidable entities
+    // TODO: Optimize this function, iterating through every entity will exponentially increase the processing power required
+    for (std::unordered_map<size_t, Entity*>::iterator i = m_collidableEntities.begin(); i != m_entities.end(); i++) {
+        i->second->setColliding(false);
+        for (std::unordered_map<size_t, Entity*>::iterator entity = m_collidableEntities.begin(); entity != m_collidableEntities.end(); entity++) {
+            // Check that the entity is not the current entity being handled
+            if (i->second->getID() != entity->second->getID()) {
+                if (i->second->checkCollision(entity->second))
+                    i->second->setColliding(true);
             }
         }
     }
