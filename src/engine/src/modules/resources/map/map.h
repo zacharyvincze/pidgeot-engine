@@ -5,23 +5,24 @@
 #include "modules/resources/map/tileset.h"
 
 namespace Pidgeot {
-    class Map {
-        public:
-            Map(int x, int y, const std::string tilemap, const std::string tileset);
-            ~Map();
+class Map {
+public:
+    Map(int x, int y, const std::string tilemap, const std::string tileset);
+    ~Map();
 
-            void onRender();
-            void onUpdate();
-        private:
-            std::vector<Pidgeot::Tile*> m_tilemap;
-            SDL_Rect m_position;
+    void onRender();
+    void onUpdate();
 
-            unsigned int m_tileWidth, m_tileHeight;
+private:
+    std::vector<Pidgeot::Tile*> m_tilemap;
+    SDL_Rect m_position;
 
-            std::shared_ptr<Tileset> m_tileset;
+    unsigned int m_tileWidth, m_tileHeight;
 
-            Pidgeot::Renderer& m_renderer;
-            Pidgeot::ResourceManager& m_resourceManager;
-            Pidgeot::CameraManager& m_cameraManager;
-    };
+    std::shared_ptr<Tileset> m_tileset;
+
+    Pidgeot::Renderer& m_renderer;
+    Pidgeot::ResourceManager& m_resourceManager;
+    Pidgeot::CameraManager& m_cameraManager;
+};
 }

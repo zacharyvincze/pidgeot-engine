@@ -3,17 +3,17 @@
 #include "spdlog/spdlog.h"
 
 namespace Pidgeot {
-    class Log {
-        public:
-            static void init();
+class Log {
+public:
+    static void init();
 
-            inline static std::shared_ptr<spdlog::logger>& getEngineLogger() { return s_core_logger; }
-            inline static std::shared_ptr<spdlog::logger>& getClientLogger() { return s_client_logger; }
+    inline static std::shared_ptr<spdlog::logger>& getEngineLogger() { return s_core_logger; }
+    inline static std::shared_ptr<spdlog::logger>& getClientLogger() { return s_client_logger; }
 
-        private:
-            static std::shared_ptr<spdlog::logger> s_core_logger;
-            static std::shared_ptr<spdlog::logger> s_client_logger;
-    };
+private:
+    static std::shared_ptr<spdlog::logger> s_core_logger;
+    static std::shared_ptr<spdlog::logger> s_client_logger;
+};
 }
 
 #define ENGINE_TRACE(...) ::Pidgeot::Log::getEngineLogger()->trace(__VA_ARGS__)

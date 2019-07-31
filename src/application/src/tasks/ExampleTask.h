@@ -1,24 +1,24 @@
 #pragma once
 
 #include "engine.h"
-#include "modules/resources/text.h"
-#include "entities/player.h"
 #include "entities/object.h"
+#include "entities/player.h"
+#include "modules/resources/text.h"
 
 #include "modules/resources/map/map.h"
 
 class ExampleTask : public Pidgeot::Task {
-    public:
-        ExampleTask();
+public:
+    ExampleTask();
 
-        void onUpdate();
-        void onRender();
+    void onUpdate();
+    void onRender();
 
-    private:
-        Pidgeot::Renderer& m_renderer;
-        Pidgeot::Input& m_input;
-        Pidgeot::EntityManager& m_entityManager;
+private:
+    Pidgeot::Renderer& m_renderer;
+    Pidgeot::Input& m_input;
+    Pidgeot::EntityManager& m_entityManager;
 
-        std::shared_ptr<Player> m_player;
-        std::shared_ptr<Object> m_object;
+    std::shared_ptr<Player> m_player;
+    std::shared_ptr<Object> m_object;
 };

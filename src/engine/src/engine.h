@@ -1,66 +1,67 @@
 #pragma once
 
-#include <memory>
 #include <SDL2/SDL.h>
+#include <memory>
 
 #include "spdlog/spdlog.h"
 
-#include "modules/renderer.h"
-#include "modules/input.h"
-#include "modules/timer.h"
-#include "modules/config.h"
-#include "modules/statemanager.h"
 #include "modules/cameramanager.h"
+#include "modules/config.h"
 #include "modules/entitymanager.h"
+#include "modules/input.h"
+#include "modules/renderer.h"
+#include "modules/statemanager.h"
+#include "modules/timer.h"
 
 #include "modules/resources/resourcemanager.h"
 
 namespace Pidgeot {
-    class Engine {
-        public:
-            inline static Engine& get() { return *s_instance; }
-            Engine();
-            ~Engine();
+class Engine {
+public:
+    inline static Engine& get() { return *s_instance; }
+    Engine();
+    ~Engine();
 
-            void run();
+    void run();
 
-            inline uint getWindowWidth() { return m_window_width; }
-            inline uint getWindowHeight() { return m_window_height; }
+    inline uint getWindowWidth() { return m_window_width; }
+    inline uint getWindowHeight() { return m_window_height; }
 
-            Pidgeot::Renderer& getRenderer();
-            Pidgeot::Window& getWindow();
-            Pidgeot::ResourceManager& getResourceManager();
-            Pidgeot::CameraManager& getCameraManager();
-            Pidgeot::StateManager& getStateManager();
-            Pidgeot::Config& getConfig();
-            Pidgeot::Timer& getTimer();
-            Pidgeot::Input& getInput();
-            Pidgeot::EntityManager& getEntityManager();
+    Pidgeot::Renderer& getRenderer();
+    Pidgeot::Window& getWindow();
+    Pidgeot::ResourceManager& getResourceManager();
+    Pidgeot::CameraManager& getCameraManager();
+    Pidgeot::StateManager& getStateManager();
+    Pidgeot::Config& getConfig();
+    Pidgeot::Timer& getTimer();
+    Pidgeot::Input& getInput();
+    Pidgeot::EntityManager& getEntityManager();
 
-            inline long getTicks() { return getTimer().ticks(); }
+    inline long getTicks() { return getTimer().ticks(); }
 
-            void quit();
-        private:
-            static Engine* s_instance;
+    void quit();
 
-            std::shared_ptr<Pidgeot::Renderer> m_renderer;
-            std::shared_ptr<Pidgeot::Window> m_window;
-            std::shared_ptr<Pidgeot::ResourceManager> m_resource_manager;
-            std::shared_ptr<Pidgeot::Input> m_input;
-            std::shared_ptr<Pidgeot::StateManager> m_state_manager;
-            std::shared_ptr<Pidgeot::CameraManager> m_camera_manager;
-            std::shared_ptr<Pidgeot::Timer> m_timer;
-            std::shared_ptr<Pidgeot::Config> m_config;
-            std::shared_ptr<Pidgeot::EntityManager> m_entityManager;
+private:
+    static Engine* s_instance;
 
-            // Main flag for running engine loop
-            bool m_running;
+    std::shared_ptr<Pidgeot::Renderer> m_renderer;
+    std::shared_ptr<Pidgeot::Window> m_window;
+    std::shared_ptr<Pidgeot::ResourceManager> m_resource_manager;
+    std::shared_ptr<Pidgeot::Input> m_input;
+    std::shared_ptr<Pidgeot::StateManager> m_state_manager;
+    std::shared_ptr<Pidgeot::CameraManager> m_camera_manager;
+    std::shared_ptr<Pidgeot::Timer> m_timer;
+    std::shared_ptr<Pidgeot::Config> m_config;
+    std::shared_ptr<Pidgeot::EntityManager> m_entityManager;
 
-            uint m_frames_per_second;
-            uint m_window_width, m_window_height;
-            uint32_t m_video_flags, m_window_flags;
-            std::string m_window_title;
-    };
+    // Main flag for running engine loop
+    bool m_running;
 
-    Engine* createApplication();
-}
+    uint m_frames_per_second;
+    uint m_window_width, m_window_height;
+    uint32_t m_video_flags, m_window_flags;
+    std::string m_window_title;
+};
+
+Engine* createApplication();
+} // namespace Pidgeot

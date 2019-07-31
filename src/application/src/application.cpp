@@ -2,7 +2,8 @@
 
 #include "tasks/tasks.h"
 
-Application::Application() {
+Application::Application()
+{
     APP_INFO("Initializing application");
 
     // Create state and push back state tasks
@@ -13,10 +14,11 @@ Application::Application() {
     APP_INFO("Successfully initialized application");
 }
 
-Application::~Application() {
-
+Application::~Application()
+{
 }
 
-Pidgeot::Engine* Pidgeot::createApplication() {
+Pidgeot::Engine* Pidgeot::createApplication()
+{
     return new Application();
 }
