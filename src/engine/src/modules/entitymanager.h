@@ -26,5 +26,7 @@ private:
     std::unordered_map<size_t, Entity*> m_collidableEntities;
     std::unordered_map<size_t, Entity*> m_fixedEntities;
     std::unordered_map<size_t, Entity*> m_entities;
+
+    void handleCollisions();
 };
 }

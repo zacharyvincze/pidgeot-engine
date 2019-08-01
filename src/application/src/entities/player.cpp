@@ -56,4 +56,6 @@ void Player::onUpdate()
 void Player::onRender()
 {
     m_playerSprites[m_currentSprite]->draw(m_position.x, m_position.y);
+    m_renderer.setDrawColor(0xFF, 0, 0, 0xFF);
+    m_renderer.drawRect(&m_boundingBox);
 }

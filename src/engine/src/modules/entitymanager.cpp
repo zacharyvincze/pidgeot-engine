@@ -43,7 +43,18 @@ void EntityManager::onUpdate()
     for (std::unordered_map<size_t, Entity*>::iterator i = m_entities.begin(); i != m_entities.end(); i++) {
         i->second->onUpdate();
     }
+    handleCollisions();
+}
 
+void EntityManager::onRender()
+{
+    for (std::unordered_map<size_t, Entity*>::iterator i = m_entities.begin(); i != m_entities.end(); i++) {
+        i->second->onRender();
+    }
+}
+
+void EntityManager::handleCollisions()
+{
     // Deal with collisions between collidable entities
     // TODO: Optimize this function, iterating through every entity will exponentially increase the processing power required
     for (std::unordered_map<size_t, Entity*>::iterator i = m_collidableEntities.begin(); i != m_entities.end(); i++) {
@@ -55,13 +66,6 @@ void EntityManager::onUpdate()
                     i->second->setColliding(true);
             }
         }
-    }
-}
-
-void EntityManager::onRender()
-{
-    for (std::unordered_map<size_t, Entity*>::iterator i = m_entities.begin(); i != m_entities.end(); i++) {
-        i->second->onRender();
     }
 }
 }
