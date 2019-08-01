@@ -9,9 +9,11 @@ aux_source_directory(src/application/src SRC_APPLICATION)
 aux_source_directory(src/application/src/tasks SRC_APPLICATION_TASKS)
 aux_source_directory(src/application/src/entities SRC_APPLICATION_ENTITIES)
 aux_source_directory(src/engine/src SRC_ENGINE)
+aux_source_directory(src/engine/src/managers SRC_ENGINE_MANAGERS)
 aux_source_directory(src/engine/src/modules SRC_ENGINE_MODULES)
-aux_source_directory(src/engine/src/modules/resources SRC_ENGINE_MODULES_RESOURCES)
-aux_source_directory(src/engine/src/modules/resources/map SRC_ENGINE_MODULES_RESOURCES_MAP)
+aux_source_directory(src/engine/src/modules/map SRC_ENGINE_MODULES_MAP)
+aux_source_directory(src/engine/src/resources SRC_ENGINE_RESOURCES)
+aux_source_directory(src/engine/src/resources SRC_ENGINE_RESOURCES_SPRITE)
 aux_source_directory(src/engine/src/utils SRC_ENGINE_UTILS)
 
 set(SOURCES
@@ -19,9 +21,11 @@ set(SOURCES
         ${SRC_APPLICATION_TASKS}
         ${SRC_APPLICATION_ENTITIES}
         ${SRC_ENGINE}
+        ${SRC_ENGINE_MANAGERS}
         ${SRC_ENGINE_MODULES}
-        ${SRC_ENGINE_MODULES_RESOURCES}
-        ${SRC_ENGINE_MODULES_RESOURCES_MAP}
+        ${SRC_ENGINE_MODULES_MAP}
+        ${SRC_ENGINE_RESOURCES}
+        ${SRC_ENGINE_RESOURCES_SPRITE}
         ${SRC_ENGINE_UTILS})
 
 # Required packages and include paths
