@@ -1,4 +1,4 @@
-#include "modules/resources/animated_sprite.h"
+#include "resources/sprite/animated_sprite.h"
 
 #include "engine.h"
 

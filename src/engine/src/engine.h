@@ -3,17 +3,15 @@
 #include <SDL2/SDL.h>
 #include <memory>
 
-#include "spdlog/spdlog.h"
-
-#include "modules/cameramanager.h"
-#include "modules/config.h"
-#include "modules/entitymanager.h"
-#include "modules/input.h"
-#include "modules/renderer.h"
-#include "modules/statemanager.h"
-#include "modules/timer.h"
-
-#include "modules/resources/resourcemanager.h"
+#include "core/config.h"
+#include "core/input.h"
+#include "core/renderer.h"
+#include "core/timer.h"
+#include "managers/cameramanager.h"
+#include "managers/entitymanager.h"
+#include "managers/resourcemanager.h"
+#include "managers/statemanager.h"
+#include "utils/log.h"
 
 namespace Pidgeot {
 class Engine {

@@ -1,12 +1,12 @@
 #pragma once
 
-#include "modules/renderer.h"
+#include "core/renderer.h"
 #include <SDL2/SDL.h>
 #include <memory>
 #include <string>
 #include <unordered_map>
 
-#include "modules/resources/texture.h"
+#include "resources/texture.h"
 
 namespace Pidgeot {
 class ResourceManager {

@@ -1,4 +1,4 @@
-#include "modules/resources/texture.h"
+#include "resources/texture.h"
 
 namespace Pidgeot {
 Texture::Texture(const std::string path, SDL_Texture* texture)

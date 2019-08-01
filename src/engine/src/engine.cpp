@@ -1,6 +1,6 @@
 #include "engine.h"
 
-#include "log.h"
+#include "utils/log.h"
 #include <SDL2/SDL_image.h>
 
 #include <chrono>

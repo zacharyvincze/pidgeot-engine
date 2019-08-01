@@ -3,8 +3,8 @@
 #include <unordered_map>
 #include <vector>
 
-#include "log.h"
 #include "modules/camera.h"
+#include "utils/log.h"
 
 namespace Pidgeot {
 class CameraManager {

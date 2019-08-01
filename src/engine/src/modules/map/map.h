@@ -1,8 +1,8 @@
 #pragma once
 
 #include "engine.h"
-#include "modules/resources/map/tile.h"
-#include "modules/resources/map/tileset.h"
+#include "modules/map/tile.h"
+#include "modules/map/tileset.h"
 
 namespace Pidgeot {
 class Map {

@@ -1,7 +1,7 @@
-#include "modules/cameramanager.h"
+#include "managers/cameramanager.h"
 
 #include "engine.h"
-#include "log.h"
+#include "utils/log.h"
 #include <stdexcept>
 
 namespace Pidgeot {

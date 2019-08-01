@@ -1,4 +1,4 @@
-#include "modules/resources/sprite.h"
+#include "resources/sprite/sprite.h"
 
 namespace Pidgeot {
 Sprite::Sprite(const std::string texture, int source_x, int source_y, int width, int height)

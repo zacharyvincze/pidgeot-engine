@@ -1,4 +1,4 @@
-#include "modules/input.h"
+#include "core/input.h"
 
 #include "spdlog/spdlog.h"
 

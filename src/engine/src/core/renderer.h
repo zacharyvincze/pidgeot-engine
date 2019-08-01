@@ -1,10 +1,10 @@
 #pragma once
 
-#include "modules/window.h"
+#include "core/window.h"
 #include <SDL2/SDL.h>
 #include <memory>
 
-#include "modules/resources/texture.h"
+#include "resources/texture.h"
 
 namespace Pidgeot {
 class Renderer {

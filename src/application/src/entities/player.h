@@ -1,8 +1,8 @@
 #pragma once
 
 #include "modules/entity.h"
-#include "modules/resources/animated_sprite.h"
-#include "modules/resources/sprite.h"
+#include "resources/sprite/animated_sprite.h"
+#include "resources/sprite/sprite.h"
 
 #include <vector>
 

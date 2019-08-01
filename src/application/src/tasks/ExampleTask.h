@@ -3,9 +3,8 @@
 #include "engine.h"
 #include "entities/object.h"
 #include "entities/player.h"
-#include "modules/resources/text.h"
-
-#include "modules/resources/map/map.h"
+#include "modules/map/map.h"
+#include "resources/text.h"
 
 class ExampleTask : public Pidgeot::Task {
 public:

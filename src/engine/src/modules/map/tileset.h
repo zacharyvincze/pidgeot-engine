@@ -6,12 +6,12 @@
 
 #include "engine.h"
 
-#include "modules/resources/map/tile.h"
-#include "modules/resources/texture.h"
+#include "modules/map/tile.h"
+#include "resources/texture.h"
 
-#include "modules/cameramanager.h"
-#include "modules/renderer.h"
-#include "modules/resources/resourcemanager.h"
+#include "core/renderer.h"
+#include "managers/cameramanager.h"
+#include "managers/resourcemanager.h"
 
 namespace Pidgeot {
 class Tileset {

@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-#include "log.h"
+#include "utils/log.h"
 
 namespace Pidgeot {
 class GameState {

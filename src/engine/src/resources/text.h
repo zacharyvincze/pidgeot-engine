@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 
-#include "modules/resources/resourcemanager.h"
+#include "managers/resourcemanager.h"
 
 namespace Pidgeot {
 class Text {

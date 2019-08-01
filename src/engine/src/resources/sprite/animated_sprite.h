@@ -1,6 +1,6 @@
 #pragma once
 
-#include "modules/resources/sprite.h"
+#include "resources/sprite/sprite.h"
 #include <vector>
 
 namespace Pidgeot {

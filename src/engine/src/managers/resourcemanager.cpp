@@ -1,6 +1,6 @@
-#include "modules/resources/resourcemanager.h"
+#include "managers/resourcemanager.h"
 
-#include "log.h"
+#include "utils/log.h"
 #include <SDL2/SDL_image.h>
 
 #include "engine.h"

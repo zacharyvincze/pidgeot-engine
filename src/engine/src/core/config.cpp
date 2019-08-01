@@ -1,11 +1,11 @@
-#include "modules/config.h"
+#include "core/config.h"
 
 #include <algorithm>
 #include <fstream>
 #include <iostream>
 #include <stdexcept>
 
-#include "log.h"
+#include "utils/log.h"
 #include "utils/string-utils.h"
 
 namespace Pidgeot {

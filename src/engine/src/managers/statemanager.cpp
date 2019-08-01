@@ -1,6 +1,6 @@
-#include "modules/statemanager.h"
+#include "managers/statemanager.h"
 
-#include "log.h"
+#include "utils/log.h"
 #include <stdexcept>
 
 namespace Pidgeot {

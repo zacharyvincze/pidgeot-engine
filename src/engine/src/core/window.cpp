@@ -1,4 +1,4 @@
-#include "modules/window.h"
+#include "core/window.h"
 
 namespace Pidgeot {
 Window::Window(const std::string title, int width, int height, uint32_t flags)

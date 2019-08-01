@@ -1,4 +1,4 @@
-#include "text.h"
+#include "resources/text.h"
 
 #include "engine.h"
 

@@ -2,7 +2,7 @@
 
 #include "engine.h"
 
-#include "modules/resources/texture.h"
+#include "resources/texture.h"
 
 namespace Pidgeot {
 class Sprite {

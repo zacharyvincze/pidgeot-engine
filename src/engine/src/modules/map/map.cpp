@@ -1,4 +1,4 @@
-#include "modules/resources/map/map.h"
+#include "modules/map/map.h"
 
 #include "rapidxml/rapidxml.hpp"
 #include <fstream>

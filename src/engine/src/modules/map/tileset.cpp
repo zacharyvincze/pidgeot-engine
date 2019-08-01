@@ -1,4 +1,4 @@
-#include "modules/resources/map/tileset.h"
+#include "modules/map/tileset.h"
 
 namespace Pidgeot {
 Tileset::Tileset(const std::string filepath, int tile_size)

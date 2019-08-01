@@ -1,6 +1,6 @@
-#include "modules/entitymanager.h"
+#include "managers/entitymanager.h"
 
-#include "log.h"
+#include "utils/log.h"
 
 namespace Pidgeot {
 EntityManager::~EntityManager()

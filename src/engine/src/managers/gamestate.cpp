@@ -1,6 +1,6 @@
-#include "modules/gamestate.h"
+#include "managers/gamestate.h"
 
-#include "log.h"
+#include "utils/log.h"
 
 namespace Pidgeot {
 GameState::GameState(const std::string id)
