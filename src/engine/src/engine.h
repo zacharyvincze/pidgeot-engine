@@ -42,6 +42,8 @@ public:
 private:
     static Engine* s_instance;
 
+    void initialize();
+
     std::shared_ptr<Pidgeot::Renderer> m_renderer;
     std::shared_ptr<Pidgeot::Window> m_window;
     std::shared_ptr<Pidgeot::ResourceManager> m_resource_manager;

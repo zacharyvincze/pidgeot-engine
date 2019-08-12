@@ -3,6 +3,11 @@
 #include "utils/log.h"
 #include <SDL2/SDL_image.h>
 
+#include "GL/gl3w.h"
+#include "imgui/imgui.h"
+#include "imgui/imgui_impl_opengl3.h"
+#include "imgui/imgui_impl_sdl.h"
+
 #include <chrono>
 #include <thread>
 
@@ -80,6 +85,43 @@ EntityManager& Engine::getEntityManager()
     return *m_entityManager;
 }
 
+void Engine::initialize()
+{
+    // Initialize SDL
+    if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
+        ENGINE_ERROR("Unable to initialize SDL: %s", SDL_GetError());
+    }
+    IMG_Init(IMG_INIT_PNG);
+
+    const char* glsl_version = "#version 130";
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_FLAGS, 0);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
+
+    // Create window with graphics context
+    SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+    SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
+    SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
+    SDL_GLContext gl_context = SDL_GL_CreateContext(getWindow().getWindow());
+    SDL_GL_MakeCurrent(getWindow().getWindow(), gl_context);
+
+    // Initialize gl3w loader
+    gl3wInit();
+
+    // Setup Dear ImGui context
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    ImGuiIO& io = ImGui::GetIO();
+    (void)io;
+
+    ImGui::StyleColorsDark();
+
+    // Setup platform/renderer bindings
+    ImGui_ImplSDL2_InitForOpenGL(getWindow().getWindow(), gl_context);
+    ImGui_ImplOpenGL3_Init(glsl_version);
+}
+
 Engine::Engine()
 {
     Pidgeot::Log::init();
@@ -99,9 +141,7 @@ Engine::Engine()
         m_window_flags = SDL_WINDOW_SHOWN;
     m_window_title = getConfig().getOption("title");
 
-    // Init SDL subsystems
-    SDL_Init(SDL_INIT_EVERYTHING);
-    IMG_Init(IMG_INIT_PNG);
+    initialize();
 
     s_instance = this;
     m_running = true;
@@ -118,6 +158,16 @@ void Engine::run()
 
         getInput().reset();
         getInput().pollEvents();
+
+        // ImGui frame creation
+        ImGui_ImplOpenGL3_NewFrame();
+        ImGui_ImplSDL2_NewFrame(getWindow().getWindow());
+        ImGui::NewFrame();
+
+        // Using demo window for testing
+        ImGui::ShowDemoWindow();
+
+        ImGui::Render();
         getRenderer().setDrawColor(0, 0, 0, 1);
         getRenderer().clear();
 
@@ -129,6 +179,7 @@ void Engine::run()
         getStateManager().onRender();
         getEntityManager().onRender();
 
+        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
         getRenderer().present();
 
         // Limit frames per second

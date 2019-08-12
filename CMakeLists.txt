@@ -39,8 +39,19 @@ include_directories(${SDL2_INCLUDE_DIRS} ${SDL2IMAGE_INCLUDE_DIRS})
 include_directories(src/application/src src/engine/src)
 include_directories(vendor/spdlog/include)
 include_directories(vendor/rapidxml/include)
+include_directories(libs)
 
-# Compile spdlog as a static library
+# Compile static libraries
+
+# gl3w
+add_library(gl3w STATIC libs/GL/gl3w.c)
+target_link_libraries(gl3w dl GL)
+
+# imgui
+aux_source_directory(libs/imgui LIBS_IMGUI)
+add_library(imgui STATIC ${LIBS_IMGUI})
+
+# spdlog
 find_package(Threads REQUIRED)
 
 add_library(spdlog STATIC vendor/spdlog/src/spdlog.cpp ${SPDLOG_ALL_HEADERS})
@@ -52,5 +63,5 @@ target_link_libraries(spdlog PUBLIC Threads::Threads)
 
 add_executable(${PROJECT_NAME} ${SOURCES})
 
-target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} ${SDL2IMAGE_LIBRARIES} spdlog)
+target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} ${SDL2IMAGE_LIBRARIES} spdlog gl3w imgui)
 set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)

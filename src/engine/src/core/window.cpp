@@ -1,4 +1,7 @@
 #include "core/window.h"
+#include "utils/log.h"
+#include <SDL2/SDL_image.h>
+#include <stdlib.h>
 
 namespace Pidgeot {
 Window::Window(const std::string title, int width, int height, uint32_t flags)

@@ -1,11 +1,14 @@
 #include "core/input.h"
 
+#include "imgui/imgui_impl_sdl.h"
 #include "spdlog/spdlog.h"
 
 namespace Pidgeot {
 void Input::pollEvents()
 {
     while (SDL_PollEvent(&s_event)) {
+        // Bind input events to ImGui
+        ImGui_ImplSDL2_ProcessEvent(&s_event);
         if (s_event.type == SDL_KEYDOWN)
             keyDownEvent(s_event.key.keysym.scancode);
         else if (s_event.type == SDL_KEYUP)
