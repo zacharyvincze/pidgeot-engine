@@ -9,6 +9,7 @@ Application::Application()
     // Create state and push back state tasks
     getStateManager().pushState(new Pidgeot::GameState("teststate"));
     getStateManager().getState("teststate").pushTask(new ExampleTask());
+    getStateManager().getState("teststate").pushTask(new DebugTask());
     getStateManager().setActiveState("teststate");
 
     APP_INFO("Successfully initialized application");

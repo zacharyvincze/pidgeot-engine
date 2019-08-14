@@ -163,14 +163,6 @@ void Engine::run()
         ImGui_ImplSDL2_NewFrame(getWindow().getWindow());
         ImGui::NewFrame();
 
-        // Simple statistics window for displaying framerate
-        ImGui::Begin("Statistics");
-        ImGui::TextWrapped("Average Framerate: %1.f", ImGui::GetIO().Framerate);
-        ImGui::Spacing();
-        ImGui::TextWrapped("Entity Count: %i", getEntityManager().getEntityCount());
-        ImGui::End();
-
-        ImGui::Render();
         getRenderer().setDrawColor(0, 0, 0, 1);
         getRenderer().clear();
 
@@ -181,6 +173,7 @@ void Engine::run()
         // Render current state and all entities, draw graphics in buffer
         getStateManager().onRender();
         getEntityManager().onRender();
+        ImGui::Render();
 
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
         getRenderer().present();
@@ -198,6 +191,8 @@ void Engine::quit()
 {
     ENGINE_INFO("Quitting PidgeotEngine");
     m_running = false;
+    ImGui_ImplOpenGL3_Shutdown();
+    ImGui_ImplSDL2_Shutdown();
     SDL_Quit();
     IMG_Quit();
     ENGINE_INFO("Successfully quit PidgeotEngine");
