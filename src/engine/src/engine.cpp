@@ -87,6 +87,20 @@ EntityManager& Engine::getEntityManager()
 
 void Engine::initialize()
 {
+    // Read configuration
+    m_frames_per_second = getConfig().getNumOption("fps");
+    m_window_width = getConfig().getNumOption("width");
+    m_window_height = getConfig().getNumOption("height");
+    if (getConfig().getBoolOption("enable_vsync"))
+        m_video_flags |= SDL_RENDERER_PRESENTVSYNC;
+    if (getConfig().getBoolOption("renderer_accelerated"))
+        m_video_flags |= SDL_RENDERER_ACCELERATED;
+    if (getConfig().getBoolOption("fullscreen"))
+        m_window_flags = SDL_WINDOW_FULLSCREEN_DESKTOP;
+    else
+        m_window_flags = SDL_WINDOW_SHOWN;
+    m_window_title = getConfig().getOption("title");
+
     // Initialize SDL
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
         ENGINE_ERROR("Unable to initialize SDL: %s", SDL_GetError());
@@ -126,21 +140,6 @@ Engine::Engine()
 {
     Pidgeot::Log::init();
     ENGINE_INFO("Initializing PidgeotEngine");
-
-    // Read configuration
-    m_frames_per_second = getConfig().getNumOption("fps");
-    m_window_width = getConfig().getNumOption("width");
-    m_window_height = getConfig().getNumOption("height");
-    if (getConfig().getBoolOption("enable_vsync"))
-        m_video_flags |= SDL_RENDERER_PRESENTVSYNC;
-    if (getConfig().getBoolOption("renderer_accelerated"))
-        m_video_flags |= SDL_RENDERER_ACCELERATED;
-    if (getConfig().getBoolOption("fullscreen"))
-        m_window_flags = SDL_WINDOW_FULLSCREEN_DESKTOP;
-    else
-        m_window_flags = SDL_WINDOW_SHOWN;
-    m_window_title = getConfig().getOption("title");
-
     initialize();
 
     s_instance = this;
@@ -164,8 +163,12 @@ void Engine::run()
         ImGui_ImplSDL2_NewFrame(getWindow().getWindow());
         ImGui::NewFrame();
 
-        // Using demo window for testing
-        ImGui::ShowDemoWindow();
+        // Simple statistics window for displaying framerate
+        ImGui::Begin("Statistics");
+        ImGui::TextWrapped("Average Framerate: %1.f", ImGui::GetIO().Framerate);
+        ImGui::Spacing();
+        ImGui::TextWrapped("Entity Count: %i", getEntityManager().getEntityCount());
+        ImGui::End();
 
         ImGui::Render();
         getRenderer().setDrawColor(0, 0, 0, 1);
