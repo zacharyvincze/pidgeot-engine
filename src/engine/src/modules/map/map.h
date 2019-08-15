@@ -1,6 +1,8 @@
 #pragma once
 
-#include "engine.h"
+#include "core/renderer.h"
+#include "managers/cameramanager.h"
+#include "managers/resourcemanager.h"
 #include "modules/map/tile.h"
 #include "modules/map/tileset.h"
 
@@ -13,9 +15,13 @@ public:
     void onRender();
     void onUpdate();
 
+    std::string getName() { return m_name; }
+
 private:
     std::vector<Pidgeot::Tile*> m_tilemap;
     SDL_Rect m_position;
+
+    std::string m_name;
 
     unsigned int m_tileWidth, m_tileHeight;
 

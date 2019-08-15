@@ -4,8 +4,6 @@
 #include <string>
 #include <vector>
 
-#include "engine.h"
-
 #include "modules/map/tile.h"
 #include "resources/texture.h"
 

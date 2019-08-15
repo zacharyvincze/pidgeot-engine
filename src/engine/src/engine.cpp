@@ -85,6 +85,13 @@ EntityManager& Engine::getEntityManager()
     return *m_entityManager;
 }
 
+MapManager& Engine::getMapManager()
+{
+    if (m_mapManager == nullptr)
+        m_mapManager.reset(new MapManager());
+    return *m_mapManager;
+}
+
 void Engine::initialize()
 {
     // Read configuration
@@ -168,10 +175,12 @@ void Engine::run()
 
         // Update current state and all entities
         getStateManager().onUpdate();
+        getMapManager().onUpdate();
         getEntityManager().onUpdate();
 
         // Render current state and all entities, draw graphics in buffer
         getStateManager().onRender();
+        getMapManager().onRender();
         getEntityManager().onRender();
         ImGui::Render();
 

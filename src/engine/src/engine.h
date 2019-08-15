@@ -9,9 +9,12 @@
 #include "core/timer.h"
 #include "managers/cameramanager.h"
 #include "managers/entitymanager.h"
+#include "managers/mapmanager.h"
 #include "managers/resourcemanager.h"
 #include "managers/statemanager.h"
 #include "utils/log.h"
+
+class MapManager;
 
 namespace Pidgeot {
 class Engine {
@@ -34,6 +37,7 @@ public:
     Pidgeot::Timer& getTimer();
     Pidgeot::Input& getInput();
     Pidgeot::EntityManager& getEntityManager();
+    Pidgeot::MapManager& getMapManager();
 
     inline long getTicks() { return getTimer().ticks(); }
 
@@ -53,6 +57,7 @@ private:
     std::shared_ptr<Pidgeot::Timer> m_timer;
     std::shared_ptr<Pidgeot::Config> m_config;
     std::shared_ptr<Pidgeot::EntityManager> m_entityManager;
+    std::shared_ptr<Pidgeot::MapManager> m_mapManager;
 
     // Main flag for running engine loop
     bool m_running;

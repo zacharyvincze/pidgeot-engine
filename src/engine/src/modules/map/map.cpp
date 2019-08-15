@@ -1,5 +1,6 @@
 #include "modules/map/map.h"
 
+#include "engine.h"
 #include "rapidxml/rapidxml.hpp"
 #include <fstream>
 #include <sstream>
@@ -10,6 +11,7 @@ Map::Map(int x, int y, const std::string tilemap, const std::string tileset)
     , m_renderer(Pidgeot::Engine::get().getRenderer())
     , m_resourceManager(Pidgeot::Engine::get().getResourceManager())
     , m_cameraManager(Pidgeot::Engine::get().getCameraManager())
+    , m_name(tilemap)
 {
     // Read tilemap
     std::ostringstream sstream;
